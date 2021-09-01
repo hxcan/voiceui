@@ -1,5 +1,7 @@
-package com.github.reneweb.androidasyncsocketexamples.tcp;
+package com.stupidbeauty.ftpserver.lib;
 
+import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import com.koushikdutta.async.*;
@@ -12,7 +14,9 @@ import java.net.UnknownHostException;
 
 import static com.stupidbeauty.builtinftp.Utils.shellExec;
 
-public class Server {
+public class FtpServer {
+    private Context context; //!< 执行时使用的上下文。
+
     private static final String TAG="Server"; //!< 输出调试信息时使用的标记
     private AsyncSocket socket; //!< 当前的客户端连接。
     private AsyncSocket data_socket; //!< 当前的数据连接。
@@ -21,7 +25,8 @@ public class Server {
     private int data_port=1544; //!< 数据连接端口。
     private String currentWorkingDirectory="/"; //!< 当前工作目录
 
-    public Server(String host, int port) {
+    public FtpServer(String host, int port, Context context) {
+        this.context=context;
         try {
             this.host = InetAddress.getByName(host);
         } catch (UnknownHostException e) {
@@ -112,7 +117,10 @@ public class Server {
 
         String extraParameter=content.split(" ")[1];
 
-        String command = "ls " + extraParameter + " " + currentWorkingDirectory; // 构造命令。
+
+        String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory; // 构造完整路径。
+
+        String command = "ls " + extraParameter + " " + wholeDirecotoryPath; // 构造命令。
 
         Log.d(TAG, "command: " + command); // Debug.
 
