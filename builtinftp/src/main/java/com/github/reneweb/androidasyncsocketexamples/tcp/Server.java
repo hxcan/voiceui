@@ -114,10 +114,12 @@ public class Server {
 
         String command = "ls " + extraParameter + " " + currentWorkingDirectory; // 构造命令。
 
+        Log.d(TAG, "command: " + command); // Debug.
+
 //         String output = `command`;
         String output = shellExec(command);
         
-        Log.d(TAG, "outptu: " + output); // Debug 
+        Log.d(TAG, "output: " + output); // Debug
 
         Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
             @Override
