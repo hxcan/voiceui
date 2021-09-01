@@ -10,6 +10,8 @@ import com.koushikdutta.async.callback.ListenCallback;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import static com.stupidbeauty.builtinftp.Utils.shellExec;
+
 public class Server {
     private static final String TAG="Server"; //!< 输出调试信息时使用的标记
     private AsyncSocket socket; //!< 当前的客户端连接。
@@ -84,6 +86,70 @@ public class Server {
             }
         });
     }
+
+    /**
+     * 发送目录列表数据。
+     * @param content 目录路径
+     * @param currentWorkingDirectory 当前工作目录。
+     */
+    private void sendListContent(String content, String currentWorkingDirectory)
+    {
+//        puts "currentWorkingDirectory: #{currentWorkingDirectory}, lenght: #{currentWorkingDirectory.length}"
+//        currentWorkingDirectory.strip!
+//            puts "currentWorkingDirectory: #{currentWorkingDirectory}, lenght: #{currentWorkingDirectory.length}"
+//        extraParameter=data.split(" ")[1]
+//        puts "extraParameter: #{extraParameter}"
+//        command="ls #{extraParameter} #{currentWorkingDirectory}"
+//        puts "command: #{command}"
+//        #command: ls -la /
+//
+//            output=`#{command}`
+//        send_data("#{output}\n")
+//        puts "sent #{output}"
+//        FtpModule.instance.notifyLsCompleted
+
+        currentWorkingDirectory=currentWorkingDirectory.trim();
+
+        String extraParameter=content.split(" ")[1];
+
+        String command = "ls " + extraParameter + " " + currentWorkingDirectory; // 构造命令。
+
+//         String output = `command`;
+        String output = shellExec(command);
+        
+        Log.d(TAG, "outptu: " + output); // Debug 
+
+        Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                System.out.println("[Server] Successfully wrote message");
+            }
+        });
+
+        notifyLsCompleted(); // 告知已经发送目录数据。
+    } //private void sendListContent(String content, String currentWorkingDirectory)
+
+    /**
+     * 告知已经发送目录数据。
+     */
+    private void notifyLsCompleted()
+    {
+//        send_data "216 \n"
+
+        String replyString="216 " + "\n"; // 回复内容。
+
+        Log.d(TAG, "reply string: " + replyString); //Debug.
+
+        Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                System.out.println("[Server] Successfully wrote message");
+            }
+        });
+
+    } //private void notifyLsCompleted()
 
     /**
      * 处理命令。
@@ -226,6 +292,28 @@ public class Server {
             });
 
         } //else if (command.equals("EPSV")) // 扩展被动模式
+        else if (command.equals("list")) // 列出目录
+        {
+            //        elsif command=='list'
+//        send_data "150 \n"
+//        DataModule.instance.sendListContent(data, @currentWorkingDirectory)
+
+//            陈欣
+
+            String replyString="150 \n"; // 回复内容。
+
+            Log.d(TAG, "reply string: " + replyString); //Debug.
+
+            Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] Successfully wrote message");
+                }
+            });
+
+            sendListContent(content, currentWorkingDirectory); // 发送目录列表数据。
+        } //else if (command.equals("list")) // 列出目录
 
 //        2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: [Server] Received Message cwd /
 //            2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: command: cwd, content: cwd /
