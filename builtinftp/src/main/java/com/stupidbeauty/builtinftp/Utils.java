@@ -15,9 +15,12 @@ public class Utils {
             final Process process = Runtime.getRuntime().exec(cmdCommand);
             final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
+//            bufferedReader.
             while ((line = bufferedReader.readLine()) != null) {
                 Log.d(TAG, "line:" + line); // Debug.
                 stringBuilder.append(line);
+                stringBuilder.append("\n");
+//                stringBuilder.
             }
 
         } catch (Exception e) {
