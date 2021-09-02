@@ -128,6 +128,17 @@ public class FtpServer {
         String output = shellExec(command);
         
         Log.d(TAG, "output: " + output); // Debug
+        
+        // Debug:
+        output ="总用量 24452\
+drwxr-xr-x 2 root root     4096  9月  2 08:06 .\
+drwxr-xr-x 4 root root     4096  9月  2 08:03 ..\
+-rw-r--r-- 1 root root    14317  9月  2 09:11 18189.cpp.txt\
+-rw-r--r-- 1 root root      332  8月 31 09:47 dialog.h\
+-rw-r--r-- 1 root root     2076  8月 31 09:47 dialog.ui\
+-rw-r--r-- 1 root root      226  8月 31 09:47 imagefft.pro\
+-rw-r--r-- 1 root root 24998479  9月  2 09:10 list.cpp.txt\
+"
 
         Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
             @Override
@@ -135,7 +146,8 @@ public class FtpServer {
                 if (ex != null) throw new RuntimeException(ex);
                 System.out.println("[Server] data Successfully wrote message");
                 
-                data_socket.close(); // 关闭套接字。
+//                 data_socket.close(); // 关闭套接字。
+                                        notifyLsCompleted(); // 告知已经发送目录数据。
 
             }
         });
@@ -404,7 +416,7 @@ public class FtpServer {
                 if (ex != null) throw new RuntimeException(ex);
                 System.out.println("[Server] data Successfully closed connection");
                 
-                                        notifyLsCompleted(); // 告知已经发送目录数据。
+//                                         notifyLsCompleted(); // 告知已经发送目录数据。
 
             }
         });
