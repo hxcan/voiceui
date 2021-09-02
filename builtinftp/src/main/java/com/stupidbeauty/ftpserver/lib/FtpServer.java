@@ -135,7 +135,7 @@ public class FtpServer {
                 if (ex != null) throw new RuntimeException(ex);
                 System.out.println("[Server] data Successfully wrote message");
                 
-                        notifyLsCompleted(); // 告知已经发送目录数据。
+                data_socket.close(); // 关闭套接字。
 
             }
         });
@@ -403,6 +403,9 @@ public class FtpServer {
             public void onCompleted(Exception ex) {
                 if (ex != null) throw new RuntimeException(ex);
                 System.out.println("[Server] data Successfully closed connection");
+                
+                                        notifyLsCompleted(); // 告知已经发送目录数据。
+
             }
         });
 
