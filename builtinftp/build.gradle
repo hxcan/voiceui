@@ -2,22 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version="2021.9.5"
-
+version="2021.9.6"
 
 android {
     compileSdkVersion 28
 
-
     resourcePrefix "stupidbeauty__"
-
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 751
         versionName version
-
     }
 
     buildTypes {

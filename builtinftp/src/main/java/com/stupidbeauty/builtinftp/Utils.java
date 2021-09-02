@@ -14,6 +14,8 @@ public class Utils {
         try {
             final Process process = Runtime.getRuntime().exec(cmdCommand);
             final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//            String lines = bufferedReader.lines().map(line -> line + "\n").collect(Collectors.joining());
+
             String line;
 //            bufferedReader.
             while ((line = bufferedReader.readLine()) != null) {

@@ -133,11 +133,13 @@ public class FtpServer {
             @Override
             public void onCompleted(Exception ex) {
                 if (ex != null) throw new RuntimeException(ex);
-                System.out.println("[Server] Successfully wrote message");
+                System.out.println("[Server] data Successfully wrote message");
+                
+                        notifyLsCompleted(); // 告知已经发送目录数据。
+
             }
         });
 
-        notifyLsCompleted(); // 告知已经发送目录数据。
     } //private void sendListContent(String content, String currentWorkingDirectory)
 
     /**
@@ -384,7 +386,7 @@ public class FtpServer {
     private void handleDataAccept(final AsyncSocket socket)
     {
         this.data_socket=socket;
-        System.out.println("[Server] New Connection " + socket.toString());
+        System.out.println("[Server] data New Connection " + socket.toString());
 
         socket.setDataCallback(
                 new DataCallback()
@@ -392,10 +394,7 @@ public class FtpServer {
                     @Override
                     public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
                         String content = new String(bb.getAllByteArray());
-                        Log.d(TAG, "[Server] Received Message " + content); // Debug
-
-
-
+                        Log.d(TAG, "[Server] data Received Message " + content); // Debug
                     }
                 });
 
@@ -403,7 +402,7 @@ public class FtpServer {
             @Override
             public void onCompleted(Exception ex) {
                 if (ex != null) throw new RuntimeException(ex);
-                System.out.println("[Server] Successfully closed connection");
+                System.out.println("[Server] data Successfully closed connection");
             }
         });
 
@@ -411,10 +410,9 @@ public class FtpServer {
             @Override
             public void onCompleted(Exception ex) {
                 if (ex != null) throw new RuntimeException(ex);
-                System.out.println("[Server] Successfully end connection");
+                System.out.println("[Server] data Successfully end connection");
             }
         });
-
     } //private void handleDataAccept(final AsyncSocket socket)
 
     /**
