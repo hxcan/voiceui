@@ -130,15 +130,7 @@ public class FtpServer {
         Log.d(TAG, "output: " + output); // Debug
         
         // Debug:
-        output ="总用量 24452\
-drwxr-xr-x 2 root root     4096  9月  2 08:06 .\
-drwxr-xr-x 4 root root     4096  9月  2 08:03 ..\
--rw-r--r-- 1 root root    14317  9月  2 09:11 18189.cpp.txt\
--rw-r--r-- 1 root root      332  8月 31 09:47 dialog.h\
--rw-r--r-- 1 root root     2076  8月 31 09:47 dialog.ui\
--rw-r--r-- 1 root root      226  8月 31 09:47 imagefft.pro\
--rw-r--r-- 1 root root 24998479  9月  2 09:10 list.cpp.txt\
-"
+        output ="总用量 24452\ndrwxr-xr-x 2 root root     4096  9月  2 08:06 .\ndrwxr-xr-x 4 root root     4096  9月  2 08:03 ..\n-rw-r--r-- 1 root root    14317  9月  2 09:11 18189.cpp.txt\n-rw-r--r-- 1 root root      332  8月 31 09:47 dialog.h\n-rw-r--r-- 1 root root     2076  8月 31 09:47 dialog.ui\n-rw-r--r-- 1 root root      226  8月 31 09:47 imagefft.pro\n-rw-r--r-- 1 root root 24998479  9月  2 09:10 list.cpp.txt\n";
 
         Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
             @Override
