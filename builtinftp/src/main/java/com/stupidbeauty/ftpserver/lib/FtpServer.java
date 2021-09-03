@@ -3,7 +3,9 @@ package com.stupidbeauty.ftpserver.lib;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
-
+import java.util.Date;    
+import java.time.format.DateTimeFormatter;
+import java.io.File;
 import com.koushikdutta.async.*;
 import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
@@ -91,6 +93,60 @@ public class FtpServer {
             }
         });
     }
+    
+    /**
+    *  获取目录的完整列表。
+    */
+    private String getDirectoryContentList(String wholeDirecotoryPath)
+    {
+    String result="";
+            File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
+            
+           File[]   paths = photoDirecotry.listFiles();
+         
+         // for each pathname in pathname array
+         for(File path:paths) {
+         
+            // prints file and directory paths
+            System.out.println(path);
+            
+            
+            // -rw-r--r-- 1 nobody nobody     35179727 Oct 16 07:31 VID_20201015_181816.mp4
+// -rw-r--r-- 1 nobody nobody       243826 Jan 15 11:52 forum.php.jpg
+// -rw-r--r-- 1 nobody nobody       240927 Jan 16 11:15 forum.php.1.jpg
+// -rw-r--r-- 1 nobody nobody       205318 Jan 16 11:16 forum.php.2.jpg
+
+            String fileName=path.getName(); // 获取文件名。
+
+                            Date date=new Date(path.lastModified());  
+                            
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+//   String time= date.format(formatter);
+                            String time="8:00";
+
+                              DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM");
+
+//                             String dateString=date.format(dateFormatter); // 日期字符串。
+                            String dateString="30";
+                            
+                            long fileSize=path.length(); // 文件尺寸。
+                            
+                            String group="cx";
+                            
+                            String user = "ChenXin";
+                            
+                            String linkNumber="1";
+                            
+                            String permission="-rw-r--r--";
+
+                            String month="Jan"; // 月份 。
+            String currentLine = permission + " " + linkNumber + " " + user + " " + group + " " + fileSize + " " + month + " " + dateString + " " + time + " " + fileName + "\n" ; // 构造当前行。
+            
+            result=result+currentLine; // 构造结果。
+         }
+
+         return result;
+    } //private String getDirectoryContentList(String wholeDirecotoryPath)
 
     /**
      * 发送目录列表数据。
@@ -125,12 +181,20 @@ public class FtpServer {
         Log.d(TAG, "command: " + command); // Debug.
 
 //         String output = `command`;
-        String output = shellExec(command);
+//         String output = shellExec(command);
+
+            String output = getDirectoryContentList(wholeDirecotoryPath); // 获取目录的完整列表。
         
         Log.d(TAG, "output: " + output); // Debug
         
         // Debug:
 //         output ="总用量 24452\ndrwxr-xr-x 2 root root     4096  9月  2 08:06 .\ndrwxr-xr-x 4 root root     4096  9月  2 08:03 ..\n-rw-r--r-- 1 root root    14317  9月  2 09:11 18189.cpp.txt\n-rw-r--r-- 1 root root      332  8月 31 09:47 dialog.h\n-rw-r--r-- 1 root root     2076  8月 31 09:47 dialog.ui\n-rw-r--r-- 1 root root      226  8月 31 09:47 imagefft.pro\n-rw-r--r-- 1 root root 24998479  9月  2 09:10 list.cpp.txt\n";
+
+// -rw-r--r-- 1 nobody nobody     35179727 Oct 16 07:31 VID_20201015_181816.mp4
+// -rw-r--r-- 1 nobody nobody       243826 Jan 15 11:52 forum.php.jpg
+// -rw-r--r-- 1 nobody nobody       240927 Jan 16 11:15 forum.php.1.jpg
+// -rw-r--r-- 1 nobody nobody       205318 Jan 16 11:16 forum.php.2.jpg
+
 
         Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
             @Override
