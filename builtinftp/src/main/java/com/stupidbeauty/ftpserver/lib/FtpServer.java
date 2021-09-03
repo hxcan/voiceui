@@ -176,13 +176,6 @@ public class FtpServer {
 
         String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory; // 构造完整路径。
 
-        String command = "ls " + extraParameter + " " + wholeDirecotoryPath; // 构造命令。
-
-        Log.d(TAG, "command: " + command); // Debug.
-
-//         String output = `command`;
-//         String output = shellExec(command);
-
             String output = getDirectoryContentList(wholeDirecotoryPath); // 获取目录的完整列表。
         
         Log.d(TAG, "output: " + output); // Debug
@@ -230,6 +223,46 @@ public class FtpServer {
         });
 
     } //private void notifyLsCompleted()
+    
+//         def processSizeCommand(data51)
+//         if File.exists?(data51)
+//             send_data("213 #{File.size(data51)} \n")
+//         else
+//             send_data("550 \n") # file not found
+//         end
+//     end
+
+    /**
+    * 处理尺寸查询命令。
+    */
+    private void processSizeCommand(String data51)
+    {
+                    String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
+            File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
+            
+            String replyString=""; // 回复字符串。
+
+            if (photoDirecotry.exists()) // 文件存在
+            {
+            long fileSize= photoDirecotry.length(); //文件尺寸。 陈欣
+            
+                replyString="213 " + fileSize + " \n"; // 文件尺寸。
+            } //if (photoDirecotry.exists()) // 文件存在
+            else // 文件不 存在
+            {
+            replyString="550 \n"; // 文件不存在。
+            } //else // 文件不 存在
+                    
+                                Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] Successfully wrote message");
+                }
+            });
+
+    } //private void processSizeCommand(String data51)
+
 
     /**
      * 处理命令。
@@ -394,6 +427,12 @@ public class FtpServer {
 
             sendListContent(content, currentWorkingDirectory); // 发送目录列表数据。
         } //else if (command.equals("list")) // 列出目录
+        else if (command.equals("SIZE")) // 文件尺寸
+        {
+        //        elsif command == 'SIZE'
+//        processSizeCommand(data[5..-1])
+
+        } //else if (command.equals("SIZE")) // 文件尺寸
 
 //        2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: [Server] Received Message cwd /
 //            2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: command: cwd, content: cwd /
