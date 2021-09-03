@@ -189,6 +189,8 @@ public class FtpServer {
 // -rw-r--r-- 1 nobody nobody       205318 Jan 16 11:16 forum.php.2.jpg
 
 
+        Log.d(TAG, "sendListContent, data_socket: " + data_socket); // Debug
+
         Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
             @Override
             public void onCompleted(Exception ex) {
@@ -499,7 +501,7 @@ processSizeCommand(data51); // 处理尺寸 命令。
     private void handleDataAccept(final AsyncSocket socket)
     {
         this.data_socket=socket;
-        System.out.println("[Server] data New Connection " + socket.toString());
+        Log.d(TAG, "handleDataAccept, [Server] data New Connection " + socket.toString());
 
         socket.setDataCallback(
                 new DataCallback()
