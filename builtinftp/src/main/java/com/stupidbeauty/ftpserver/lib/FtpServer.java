@@ -171,9 +171,6 @@ public class FtpServer {
 
         currentWorkingDirectory=currentWorkingDirectory.trim();
 
-        String extraParameter=content.split(" ")[1];
-
-
         String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory; // 构造完整路径。
 
             String output = getDirectoryContentList(wholeDirecotoryPath); // 获取目录的完整列表。
