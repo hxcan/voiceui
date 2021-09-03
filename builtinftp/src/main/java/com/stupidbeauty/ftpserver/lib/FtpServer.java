@@ -237,6 +237,9 @@ public class FtpServer {
     private void processSizeCommand(String data51)
     {
                     String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
+                    
+                    Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    
             File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
             
             String replyString=""; // 回复字符串。
