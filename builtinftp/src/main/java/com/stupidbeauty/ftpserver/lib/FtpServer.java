@@ -236,6 +236,11 @@ public class FtpServer {
     */
     private void processSizeCommand(String data51)
     {
+                        Log.d(TAG, "processSizeCommand: filesdir: " + context.getFilesDir().getPath()); // Debug.
+                        Log.d(TAG, "processSizeCommand: workding directory: " + currentWorkingDirectory); // Debug.
+                        Log.d(TAG, "processSizeCommand: data51: " + data51); // Debug.
+
+    
                     String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
                     
                     Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
@@ -330,7 +335,7 @@ public class FtpServer {
 //        @currentWorkingDirectory= newWorkingDirectory
 //        send_data "200 \n"
 
-            currentWorkingDirectory=content.substring(4);
+            currentWorkingDirectory=content.substring(4).trim();
 
             String replyString="200 " + "\n"; // 回复内容。
 
