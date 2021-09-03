@@ -434,6 +434,10 @@ public class FtpServer {
         //        elsif command == 'SIZE'
 //        processSizeCommand(data[5..-1])
 
+String data51=            content.substring(5);
+
+
+processSizeCommand(data51); // 处理尺寸 命令。
         } //else if (command.equals("SIZE")) // 文件尺寸
 
 //        2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: [Server] Received Message cwd /
