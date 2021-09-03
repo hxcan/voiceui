@@ -252,7 +252,9 @@ public class FtpServer {
             {
             replyString="550 \n"; // 文件不存在。
             } //else // 文件不 存在
-                    
+
+                        Log.d(TAG, "reply string: " + replyString); //Debug.
+
                                 Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
                 @Override
                 public void onCompleted(Exception ex) {
