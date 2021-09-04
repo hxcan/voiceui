@@ -159,7 +159,7 @@ public class FtpServer {
                     
                     wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
                     
-                    Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    Log.d(TAG, "startStor: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
                     
             File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
             
@@ -600,6 +600,24 @@ public class FtpServer {
                 public void onCompleted(Exception ex) {
                     if (ex != null) throw new RuntimeException(ex);
                     System.out.println("[Server] Successfully wrote message");
+                }
+            });
+
+        } //else if (command.equals("EPSV")) // 扩展被动模式
+        else if (command.equals("PORT")) // 要求服务器主动连接客户端的端口
+        {
+            //        elsif command=='EPSV'
+//        send_data "202 \n"
+
+            String replyString="202 \n"; // 回复内容。
+
+            Log.d(TAG, "reply string: " + replyString); //Debug.
+
+            Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    Log.d(TAG, "[Server] Successfully wrote message");
                 }
             });
 
