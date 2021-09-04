@@ -178,6 +178,9 @@ public class FtpServer {
 		}
 
 
+		        if (data_socket!=null) // 数据连接存在
+        {
+
 				        Util.writeAll(data_socket, photoBytes, new CompletedCallback() {
             @Override
             public void onCompleted(Exception ex) {
@@ -189,6 +192,12 @@ public class FtpServer {
 
             }
         });
+
+                } //if (data_socket!=null)
+        else // 数据连接不存在
+        {
+            notifyLsFailedDataConnectionNull(); // 告知，数据连接未建立。
+        } //else // 数据连接不存在
 
     } //private void sendFileContent(String data51, String currentWorkingDirectory)
 
