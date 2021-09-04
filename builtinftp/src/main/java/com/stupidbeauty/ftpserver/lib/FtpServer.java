@@ -27,6 +27,7 @@ public class FtpServer {
     private int port;
     private int data_port=1544; //!< 数据连接端口。
     private String currentWorkingDirectory="/"; //!< 当前工作目录
+    private File writingFile; //!< 当前正在写入的文件。
 
     public FtpServer(String host, int port, Context context) {
         this.context=context;
@@ -148,6 +149,31 @@ public class FtpServer {
 
          return result;
     } //private String getDirectoryContentList(String wholeDirecotoryPath)
+    
+    /**
+    * 上传文件内容。
+    */
+    private void startStor(String data51, String currentWorkingDirectory) 
+    {
+                            String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
+                    
+                    wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
+                    
+                    Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    
+            File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
+            
+            writingFile=photoDirecotry; // 记录文件。
+
+//             陈欣
+
+        if (photoDirecotry.exists())
+        {
+            photoDirecotry.delete();
+        }
+        
+        FileUtils.touch(photoDirecotry); //创建文件。
+    } //private void startStor(String data51, String currentWorkingDirectory) // 上传文件内容。
     
     /**
     * 发送文件内容。
@@ -617,6 +643,32 @@ data51=data51.trim(); // 去掉末尾换行
             });
 
         } //else if (command.equals("DELE")) // 删除文件
+        else if (command.equals("stor")) // 上传文件
+        {
+        //        elsif command=='stor'
+//        send_data "150 \n"
+//        DataModule.instance.startStor(data[5..-1])
+
+            String replyString="150 \n"; // 回复内容。
+
+            Log.d(TAG, "reply string: " + replyString); //Debug.
+
+            Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] Successfully wrote message");
+                }
+            });
+
+            String data51=            content.substring(5);
+
+data51=data51.trim(); // 去掉末尾换行
+
+
+            startStor(data51, currentWorkingDirectory); // 发送文件内容。
+
+        } //else if (command.equals("stor")) // 上传文件
 
 //        2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: [Server] Received Message cwd /
 //            2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: command: cwd, content: cwd /
@@ -684,8 +736,14 @@ data51=data51.trim(); // 去掉末尾换行
                 {
                     @Override
                     public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
-                        String content = new String(bb.getAllByteArray());
-                        Log.d(TAG, "[Server] data Received Message " + content); // Debug
+//                         String content = new String(bb.getAllByteArray());
+//                         Log.d(TAG, "[Server] data Received Message " + content); // Debug
+                        
+                        byte[] content=bb.getAllByteArray(); // 读取全部内容。
+                        
+                        boolean appendTrue=true;
+                        
+                        FileUtils.writeByteArrayToFile(writingFile, content, appendTrue); // 写入。
                     }
                 });
 
