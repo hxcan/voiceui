@@ -882,8 +882,15 @@ data51=data51.trim(); // 去掉末尾换行
         socket.setEndCallback(new CompletedCallback() {
             @Override
             public void onCompleted(Exception ex) {
-                if (ex != null) throw new RuntimeException(ex);
-                System.out.println("[Server] Successfully end connection");
+                if (ex != null) // 有异常出现
+                {
+//                 throw new RuntimeException(ex);
+                    ex.printStackTrace(); // 报告。
+                }
+                else // 无异常
+                {
+                Log.d(TAG, "ftpmodule [Server] Successfully end connection");
+                } //else // 无异常
             }
         });
 
