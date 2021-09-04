@@ -835,8 +835,13 @@ data51=data51.trim(); // 去掉末尾换行
 
     
         private void handleConnectCompleted(Exception ex, final AsyncSocket socket) {
-        if(ex != null) throw new RuntimeException(ex);
-        
+        if(ex != null) 
+        {
+//         throw new RuntimeException(ex);
+ex.printStackTrace(); //报告错误
+        }
+        else // 无异常。
+        {
         this.data_socket=socket; // 记录数据连接。
 
 //         Util.writeAll(socket, "Hello Server".getBytes(), new CompletedCallback() {
@@ -885,6 +890,9 @@ data51=data51.trim(); // 去掉末尾换行
 
             }
         });
+        
+        } //else // 无异常。
+        
     }
 
     /**
