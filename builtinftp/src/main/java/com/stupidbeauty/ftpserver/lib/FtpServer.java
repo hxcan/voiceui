@@ -231,7 +231,9 @@ public class FtpServer {
 
 
         Log.d(TAG, "sendListContent, data_socket: " + data_socket); // Debug
-
+        
+        if (data_socket!=null) // 数据连接存在
+        {
         Util.writeAll(data_socket, (output + "\n").getBytes(), new CompletedCallback() {
             @Override
             public void onCompleted(Exception ex) {
@@ -243,8 +245,18 @@ public class FtpServer {
 
             }
         });
+            
+        } //if (data_socket!=null)
+        else // 数据连接不存在
+        {
+            notifyLsFailedDataConnectionNull(); // 告知，数据连接未建立。
+        } //else // 数据连接不存在
+
 
     } //private void sendListContent(String content, String currentWorkingDirectory)
+    
+    
+    
     
     /**
     * 告知已经发送文件内容数据。
@@ -267,6 +279,27 @@ public class FtpServer {
 
 
     } //private void notifyFileSendCompleted()
+    
+    /**
+    * 告知，数据连接未建立。
+    */
+    private void notifyLsFailedDataConnectionNull() 
+    {
+    //        send_data "216 \n"
+
+        String replyString="426 " + "\n"; // 回复内容。
+
+        Log.d(TAG, "reply string: " + replyString); //Debug.
+
+        Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                Log.d(TAG, "notifyLsFailedDataConnectionNull, [Server] Successfully wrote message");
+            }
+        });
+
+    } //private void notifyLsFailedDataConnectionNull()
 
     /**
      * 告知已经发送目录数据。
@@ -619,6 +652,7 @@ processSizeCommand(data51); // 处理尺寸 命令。
                 
 //                                         notifyLsCompleted(); // 告知已经发送目录数据。
 
+                data_socket=null;
             }
         });
 
