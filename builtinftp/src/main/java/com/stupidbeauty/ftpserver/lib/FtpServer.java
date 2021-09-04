@@ -300,7 +300,29 @@ public class FtpServer {
     } //private void sendListContent(String content, String currentWorkingDirectory)
     
     
-    
+    /**
+    * 告知上传完成。
+    */
+    private void notifyStorCompleted() 
+    {
+//         def notifyStorCompleted
+//         send_data("226 \n")
+//     end
+
+        String replyString="226 " + "\n"; // 回复内容。
+
+        Log.d(TAG, "reply string: " + replyString); //Debug.
+
+        Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                System.out.println("[Server] Successfully wrote message");
+            }
+        });
+
+
+    } //private void notifyStorCompleted()
     
     /**
     * 告知已经发送文件内容数据。
@@ -773,6 +795,15 @@ data51=data51.trim(); // 去掉末尾换行
 //                                         notifyLsCompleted(); // 告知已经发送目录数据。
 
                 data_socket=null;
+                
+                
+//                     def unbind
+//         @file&.close
+//         
+//         FtpModule.instance.notifyStorCompleted
+//     end
+
+                notifyStorCompleted(); // 告知上传完成。
             }
         });
 
