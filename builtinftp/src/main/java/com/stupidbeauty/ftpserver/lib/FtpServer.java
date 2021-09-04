@@ -581,6 +581,42 @@ data51=data51.trim(); // 去掉末尾换行
 
 processSizeCommand(data51); // 处理尺寸 命令。
         } //else if (command.equals("SIZE")) // 文件尺寸
+        else if (command.equals("DELE")) // 删除文件
+        {
+        //        fileName=data[5..-1]
+//        File.delete(fileName.strip)
+//        send_data "250 \n"
+
+String data51=            content.substring(5);
+
+data51=data51.trim(); // 去掉末尾换行
+
+// 删除文件。陈欣
+
+                        String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
+                    
+                    wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
+                    
+                    Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    
+            File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
+
+            photoDirecotry.delete();
+            
+            
+            String replyString="250 \n"; // 回复内容。
+
+            Log.d(TAG, "reply string: " + replyString); //Debug.
+
+            Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] Successfully wrote message");
+                }
+            });
+
+        } //else if (command.equals("DELE")) // 删除文件
 
 //        2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: [Server] Received Message cwd /
 //            2021-08-29 20:57:40.287 16876-16916/com.stupidbeauty.builtinftp.demo D/Server: command: cwd, content: cwd /
