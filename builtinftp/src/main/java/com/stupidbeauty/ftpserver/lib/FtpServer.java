@@ -11,6 +11,8 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.callback.ListenCallback;
 import org.apache.commons.io.FileUtils;
+import com.koushikdutta.async.callback.ConnectCallback;
+import java.net.InetSocketAddress;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -609,7 +611,8 @@ public class FtpServer {
             //        elsif command=='EPSV'
 //        send_data "202 \n"
 
-            String replyString="202 \n"; // 回复内容。
+//             String replyString="202 \n"; // 回复内容。未实现
+            String replyString="150 \n"; // 回复内容。正在打开数据连接
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
@@ -621,6 +624,7 @@ public class FtpServer {
                 }
             });
 
+            openDataConnectionToClient(content); // 打开指向客户端特定端口的连接。
         } //else if (command.equals("EPSV")) // 扩展被动模式
         else if (command.equals("list")) // 列出目录
         {
@@ -793,6 +797,104 @@ data51=data51.trim(); // 去掉末尾换行
 //                end
 
     } //private void processCommand(String command, String content)
+    
+    /**
+    * 从数据套接字处接收数据。陈欣
+    */
+    private void                         receiveDataSocket( ByteBufferList bb)
+    {
+                            byte[] content=bb.getAllByteArray(); // 读取全部内容。
+                        
+                        boolean appendTrue=true;
+
+                        try
+                        {
+                        FileUtils.writeByteArrayToFile(writingFile, content, appendTrue); // 写入。
+                        }
+                        catch (Exception e)
+                        {
+                        e.printStackTrace();
+                        }
+                        
+
+    } //private void                         receiveDataSocket( ByteBufferList bb)
+
+    
+        private void handleConnectCompleted(Exception ex, final AsyncSocket socket) {
+        if(ex != null) throw new RuntimeException(ex);
+        
+        this.data_socket=socket; // 记录数据连接。
+
+//         Util.writeAll(socket, "Hello Server".getBytes(), new CompletedCallback() {
+//             @Override
+//             public void onCompleted(Exception ex) {
+//                 if (ex != null) throw new RuntimeException(ex);
+//                 System.out.println("[Client] Successfully wrote message");
+//             }
+//         });
+
+        socket.setDataCallback(new DataCallback() {
+            @Override
+            public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
+//                 System.out.println("[Client] Received Message " + new String(bb.getAllByteArray()));
+                        receiveDataSocket(bb);
+
+            }
+        });
+
+        socket.setClosedCallback(new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if(ex != null) throw new RuntimeException(ex);
+                System.out.println("[Client] Successfully closed connection");
+                
+                                                data_socket=null;
+                
+                
+//                     def unbind
+//         @file&.close
+//         
+//         FtpModule.instance.notifyStorCompleted
+//     end
+
+                notifyStorCompleted(); // 告知上传完成。
+
+            }
+        });
+
+        socket.setEndCallback(new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if(ex != null) throw new RuntimeException(ex);
+                System.out.println("[Client] Successfully end connection");
+                
+
+            }
+        });
+    }
+
+    /**
+    * 打开指向客户端特定端口的连接。
+    */
+    private void openDataConnectionToClient(String content)
+    {
+    String portString=content.split(" ")[1].trim(); // 端口字符串。
+    
+    String[] addressStringList= portString.split(","); //获取地址字符串。
+    
+    String ip=addressStringList[0]+"."+addressStringList[1]+"."+addressStringList[2]+"."+addressStringList[3]; // 构造IP。陈欣
+    int port=Integer.parseInt(addressStringList[4])*256+Integer.parseInt(addressStringList[5]); // 计算出端口号。
+    
+    //连接：陈欣
+    
+            AsyncServer.getDefault().connectSocket(new InetSocketAddress(ip, port), new ConnectCallback() {
+            @Override
+            public void onConnectCompleted(Exception ex, final AsyncSocket socket) {
+                handleConnectCompleted(ex, socket);
+            }
+        });
+
+    } //private void openDataConnectionToClient(String content)
 
     /**
      * 接受数据连接
@@ -811,18 +913,7 @@ data51=data51.trim(); // 去掉末尾换行
 //                         String content = new String(bb.getAllByteArray());
 //                         Log.d(TAG, "[Server] data Received Message " + content); // Debug
                         
-                        byte[] content=bb.getAllByteArray(); // 读取全部内容。
-                        
-                        boolean appendTrue=true;
-
-                        try
-                        {
-                        FileUtils.writeByteArrayToFile(writingFile, content, appendTrue); // 写入。
-                        }
-                        catch (Exception e)
-                        {
-                        e.printStackTrace();
-                        }
+                        receiveDataSocket(bb);
                         
                     }
                 });
