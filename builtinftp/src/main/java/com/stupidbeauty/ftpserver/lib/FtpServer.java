@@ -101,8 +101,10 @@ public class FtpServer {
     /**
     *  获取目录的完整列表。
     */
-    private String getDirectoryContentList(String wholeDirecotoryPath)
+    private String getDirectoryContentList(String wholeDirecotoryPath, String nameOfFile)
     {
+    nameOfFile=nameOfFile.trim();
+    
     String result="";
             File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
             
@@ -146,7 +148,10 @@ public class FtpServer {
                             String month="Jan"; // 月份 。
             String currentLine = permission + " " + linkNumber + " " + user + " " + group + " " + fileSize + " " + month + " " + dateString + " " + time + " " + fileName + "\n" ; // 构造当前行。
             
+            if (fileName.equals(nameOfFile)  || (nameOfFile.isEmpty())) // 名字匹配。
+            {
             result=result+currentLine; // 构造结果。
+            } //if (fileName.equals(nameOfFile)) // 名字匹配。
          }
 
          return result;
@@ -259,11 +264,20 @@ public class FtpServer {
 //        puts "sent #{output}"
 //        FtpModule.instance.notifyLsCompleted
 
+        String parameter=content.substring(5).trim(); // 获取额外参数。
+        
+        if (parameter.equals("-la")) // 忽略
+        {
+        parameter=""; // 忽略成空白。
+        } //if (parameter.equals("-la")) // 忽略
+        
+        
+
         currentWorkingDirectory=currentWorkingDirectory.trim();
 
         String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory; // 构造完整路径。
 
-            String output = getDirectoryContentList(wholeDirecotoryPath); // 获取目录的完整列表。
+            String output = getDirectoryContentList(wholeDirecotoryPath, parameter); // 获取目录的完整列表。
         
         Log.d(TAG, "output: " + output); // Debug
         
