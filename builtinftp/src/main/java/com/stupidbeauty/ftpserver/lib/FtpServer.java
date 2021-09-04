@@ -172,7 +172,16 @@ public class FtpServer {
             photoDirecotry.delete();
         }
         
+                    				try //尝试构造请求对象，并且捕获可能的异常。
+		{
+
         FileUtils.touch(photoDirecotry); //创建文件。
+        						} //try //尝试构造请求对象，并且捕获可能的异常。
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
     } //private void startStor(String data51, String currentWorkingDirectory) // 上传文件内容。
     
     /**
@@ -742,8 +751,16 @@ data51=data51.trim(); // 去掉末尾换行
                         byte[] content=bb.getAllByteArray(); // 读取全部内容。
                         
                         boolean appendTrue=true;
-                        
+
+                        try
+                        {
                         FileUtils.writeByteArrayToFile(writingFile, content, appendTrue); // 写入。
+                        }
+                        catch (Exception e)
+                        {
+                        e.printStackTrace();
+                        }
+                        
                     }
                 });
 
