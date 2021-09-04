@@ -10,6 +10,7 @@ import com.koushikdutta.async.*;
 import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.callback.ListenCallback;
+import org.apache.commons.io.FileUtils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -147,6 +148,49 @@ public class FtpServer {
 
          return result;
     } //private String getDirectoryContentList(String wholeDirecotoryPath)
+    
+    /**
+    * 发送文件内容。
+    */
+    private void sendFileContent(String data51, String currentWorkingDirectory) 
+    {
+                        String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
+                    
+                    wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
+                    
+                    Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    
+            File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
+            
+            String replyString=""; // 回复字符串。
+
+            		byte[] photoBytes=null; //数据内容。
+
+            				try //尝试构造请求对象，并且捕获可能的异常。
+		{
+
+				photoBytes= FileUtils.readFileToByteArray(photoDirecotry); //将照片文件内容全部读取。
+				
+						} //try //尝试构造请求对象，并且捕获可能的异常。
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+
+				        Util.writeAll(data_socket, photoBytes, new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                System.out.println("[Server] data Successfully wrote message");
+                
+//                 data_socket.close(); // 关闭套接字。
+                                        notifyFileSendCompleted(); // 告知已经发送文件内容数据。
+
+            }
+        });
+
+    } //private void sendFileContent(String data51, String currentWorkingDirectory)
 
     /**
      * 发送目录列表数据。
@@ -201,6 +245,28 @@ public class FtpServer {
         });
 
     } //private void sendListContent(String content, String currentWorkingDirectory)
+    
+    /**
+    * 告知已经发送文件内容数据。
+    */
+    private void notifyFileSendCompleted() 
+    {
+    //        send_data "216 \n"
+
+        String replyString="216 " + "\n"; // 回复内容。
+
+        Log.d(TAG, "reply string: " + replyString); //Debug.
+
+        Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                System.out.println("[Server] Successfully wrote message");
+            }
+        });
+
+
+    } //private void notifyFileSendCompleted()
 
     /**
      * 告知已经发送目录数据。
@@ -437,6 +503,29 @@ public class FtpServer {
             });
 
             sendListContent(content, currentWorkingDirectory); // 发送目录列表数据。
+        } //else if (command.equals("list")) // 列出目录
+        else if (command.equals("retr")) // 获取文件
+        {
+//            陈欣
+
+            String replyString="150 \n"; // 回复内容。
+
+            Log.d(TAG, "reply string: " + replyString); //Debug.
+
+            Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] Successfully wrote message");
+                }
+            });
+
+            String data51=            content.substring(5);
+
+data51=data51.trim(); // 去掉末尾换行
+
+
+            sendFileContent(data51, currentWorkingDirectory); // 发送文件内容。
         } //else if (command.equals("list")) // 列出目录
         else if (command.equals("SIZE")) // 文件尺寸
         {
