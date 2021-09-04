@@ -445,6 +445,8 @@ public class FtpServer {
 
 String data51=            content.substring(5);
 
+data51=data51.trim(); // 去掉末尾换行
+
 
 processSizeCommand(data51); // 处理尺寸 命令。
         } //else if (command.equals("SIZE")) // 文件尺寸
