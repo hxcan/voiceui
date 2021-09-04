@@ -502,9 +502,32 @@ public class FtpServer {
 //        @currentWorkingDirectory= newWorkingDirectory
 //        send_data "200 \n"
 
-            currentWorkingDirectory=content.substring(4).trim();
+            String targetWorkingDirectory=content.substring(4).trim();
+            
+                        String wholeDirecotoryPath= context.getFilesDir().getPath() + targetWorkingDirectory; // 构造完整路径。
+                    
+                    wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
+                    
+                    Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    
+            File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
 
-            String replyString="200 " + "\n"; // 回复内容。
+                        String replyString="" ; // 回复内容。
+
+            if (photoDirecotry.isDirectory()) // 是个目录
+            {
+            currentWorkingDirectory=targetWorkingDirectory;
+
+            replyString="200 " + "\n"; // 回复内容。
+            
+            } //if (photoDirecotry.isDirectory()) // 是个目录
+                else //不是个目录
+                {
+//                 陈欣
+            replyString="550 " + "\n"; // 回复内容。
+                
+                }
+
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
