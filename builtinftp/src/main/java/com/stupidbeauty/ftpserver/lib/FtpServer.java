@@ -462,7 +462,7 @@ public class FtpServer {
             } //if (photoDirecotry.exists()) // 文件存在
             else // 文件不 存在
             {
-            replyString="550 \n"; // 文件不存在。
+            replyString="550 No directory traversal allowed in SIZE param\n"; // 文件不存在。
             } //else // 文件不 存在
 
                         Log.d(TAG, "reply string: " + replyString); //Debug.
