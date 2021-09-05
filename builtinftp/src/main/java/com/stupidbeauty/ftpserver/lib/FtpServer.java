@@ -995,6 +995,8 @@ ex.printStackTrace(); //报告错误
 
             }
         });
+        
+        dataSocketPendingByteArray=null; // 数据置空。
 
         } // if (dataSocketPendingByteArray!=null)
 
@@ -1099,7 +1101,7 @@ ex.printStackTrace(); //报告错误
         //发送初始命令：
 //        send_data "220 \n"
 
-        Util.writeAll(socket, "220 \n".getBytes(), new CompletedCallback() {
+        Util.writeAll(socket, "220 BuiltinFtp Server\n".getBytes(), new CompletedCallback() {
             @Override
             public void onCompleted(Exception ex) {
                 if (ex != null) throw new RuntimeException(ex);
