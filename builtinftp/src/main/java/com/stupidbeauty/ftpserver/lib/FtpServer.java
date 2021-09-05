@@ -13,6 +13,9 @@ import com.koushikdutta.async.callback.ListenCallback;
 import org.apache.commons.io.FileUtils;
 import com.koushikdutta.async.callback.ConnectCallback;
 import java.net.InetSocketAddress;
+import android.text.format.Formatter;
+import android.net.wifi.WifiManager;
+import java.util.Random;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -607,7 +610,7 @@ public class FtpServer {
         
         setupDataServer(); // 初始化数据服务器。
         
-                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+                WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
 
         
