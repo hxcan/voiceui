@@ -10,6 +10,11 @@ public class BuiltinFtpServer
         private int port=1421; //!< 端口。
         private FtpServer ftpServer=null; //!< Ftp服务器对象。
         
+        public void setPort(int port)
+        {
+        this.port=port;
+        } //public void setPort(int port)
+        
                 private BuiltinFtpServer() {
                 }
 
