@@ -403,7 +403,7 @@ public class FtpServer {
     {
 //        send_data "216 \n"
 
-        String replyString="216 " + "\n"; // 回复内容。
+        String replyString="226 Data transmission OK. ChenXin" + "\n"; // 回复内容。
 
         Log.d(TAG, "reply string: " + replyString); //Debug.
 
@@ -694,7 +694,7 @@ public class FtpServer {
 
 //            陈欣
 
-            String replyString="150 \n"; // 回复内容。
+            String replyString="150 Opening BINARY mode data connection for file list, ChenXin\n"; // 回复内容。
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
