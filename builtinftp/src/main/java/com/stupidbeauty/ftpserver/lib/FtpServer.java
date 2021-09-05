@@ -313,7 +313,7 @@ public class FtpServer {
                 if (ex != null) throw new RuntimeException(ex);
                 System.out.println("[Server] data Successfully wrote message");
                 
-//                 data_socket.close(); // 关闭套接字。
+                data_socket.close(); // 关闭套接字。
                                         notifyLsCompleted(); // 告知已经发送目录数据。
 
             }
