@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version="2021.9.44"
+version="2021.9.45"
 
 android {
     compileSdkVersion 28
@@ -33,7 +33,6 @@ dependencies
 
 // https://mvnrepository.com/artifact/commons-io/commons-io
 compile 'commons-io:commons-io:2.11.0'
-
         }
 
 
