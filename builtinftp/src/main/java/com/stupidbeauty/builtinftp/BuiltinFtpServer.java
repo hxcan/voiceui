@@ -14,7 +14,7 @@ public class BuiltinFtpServer
         /**
         * 设置，是否允许主动模式。
         */
-        private void setAllowActiveMode(allowActiveMode)
+        private void setAllowActiveMode(boolean allowActiveMode)
         {
         this.allowActiveMode=allowActiveMode;
         } //private void setAllowActiveMode(allowActiveMode)
