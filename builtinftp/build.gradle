@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version="2021.9.43"
+version="2021.9.44"
 
 android {
     compileSdkVersion 28
@@ -32,7 +32,7 @@ dependencies
             compile 'com.koushikdutta.async:androidasync:2.1.7'
 
 // https://mvnrepository.com/artifact/commons-io/commons-io
-implementation 'commons-io:commons-io:2.11.0'
+compile 'commons-io:commons-io:2.11.0'
 
         }
 
