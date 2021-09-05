@@ -492,7 +492,7 @@ public class FtpServer {
         {
 //            send_data "230 \n"
 
-            Util.writeAll(socket, "230 Loged in.\n".getBytes(), new CompletedCallback() {
+            Util.writeAll(socket, "331 Send password\n".getBytes(), new CompletedCallback() {
                 @Override
                 public void onCompleted(Exception ex) {
                     if (ex != null) throw new RuntimeException(ex);
@@ -501,6 +501,16 @@ public class FtpServer {
             });
 
         } //if (command.equals("USER")) // 用户登录
+        else if (command.equals("PASS")) // 密码
+        {
+            Util.writeAll(socket, "230 Loged in.\n".getBytes(), new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] Successfully wrote message");
+                }
+            });
+        } //else if (command.equals("PASS")) // 密码
         else if (command.equals("SYST")) // 系统信息
         {
             //        send_data "200 UNIX Type: L8\n"
@@ -519,7 +529,7 @@ public class FtpServer {
             //        send_data "200 #{@currentWorkingDirectory}\n"
 //        puts "200 #{@currentWorkingDirectory}\n"
 
-            String replyString="257 " + currentWorkingDirectory + "\n"; // 回复内容。
+            String replyString="257 \"" + currentWorkingDirectory + "\"\n"; // 回复内容。
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
