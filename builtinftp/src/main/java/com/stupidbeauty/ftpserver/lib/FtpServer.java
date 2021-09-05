@@ -30,9 +30,12 @@ public class FtpServer {
     private int data_port=1544; //!< 数据连接端口。
     private String currentWorkingDirectory="/"; //!< 当前工作目录
     private File writingFile; //!< 当前正在写入的文件。
+        private boolean allowActiveMode=true; //!< 是否允许主动模式。
 
-    public FtpServer(String host, int port, Context context) {
+    public FtpServer(String host, int port, Context context, boolean allowActiveMode) {
         this.context=context;
+        this.allowActiveMode=allowActiveMode;
+        
         try {
             this.host = InetAddress.getByName(host);
         } catch (UnknownHostException e) {
@@ -595,7 +598,25 @@ public class FtpServer {
 //
 //        send_data "227 Entering Passive Mode (#{a1},#{a2},#{a3},#{a4},#{p1},#{p2}) \n"
 
-            String replyString="227 Entering Passive Mode (0,0,0,0,6,8) \n"; // 回复内容。
+                    Random random=new Random(); //随机数生成器。
+
+                int randomIndex=random.nextInt(65535-1025)+1025; //随机选择一个文件。
+
+
+        data_port=randomIndex; 
+        
+        setupDataServer(); // 初始化数据服务器。
+        
+                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+
+        
+        String ip = ipAddress.replace(".", ",");
+        
+        int port256=data_port/256;
+        int portModule=data_port-port256*256;
+
+            String replyString="227 Entering Passive Mode ("+ip+","+port256+","+portModule+") \n"; // 回复内容。
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
@@ -633,7 +654,23 @@ public class FtpServer {
 //        send_data "202 \n"
 
 //             String replyString="202 \n"; // 回复内容。未实现
+
             String replyString="150 \n"; // 回复内容。正在打开数据连接
+
+
+        if (allowActiveMode) // 允许主动模式
+        {
+            openDataConnectionToClient(content); // 打开指向客户端特定端口的连接。
+
+                         replyString="150 \n"; // 回复内容。正在打开数据连接
+
+            } //if (allowActiveMode) // 允许主动模式
+        else // 不允许主动模式。
+        {
+
+                     replyString="202 \n"; // 回复内容。未实现。
+} //else // 不允许主动模式。
+
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
@@ -645,7 +682,6 @@ public class FtpServer {
                 }
             });
 
-            openDataConnectionToClient(content); // 打开指向客户端特定端口的连接。
         } //else if (command.equals("EPSV")) // 扩展被动模式
         else if (command.equals("list")) // 列出目录
         {

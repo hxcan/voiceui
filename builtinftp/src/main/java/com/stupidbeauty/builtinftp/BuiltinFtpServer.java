@@ -9,6 +9,15 @@ public class BuiltinFtpServer
         {
         private int port=1421; //!< 端口。
         private FtpServer ftpServer=null; //!< Ftp服务器对象。
+        private boolean allowActiveMode=true; //!< 是否允许主动模式。
+        
+        /**
+        * 设置，是否允许主动模式。
+        */
+        private void setAllowActiveMode(allowActiveMode)
+        {
+        this.allowActiveMode=allowActiveMode;
+        } //private void setAllowActiveMode(allowActiveMode)
         
         public void setPort(int port)
         {
@@ -30,7 +39,7 @@ public void start()
                 @Override
                 protected Void doInBackground(Void... params) {
                         //TCP client and server (Client will automatically send welcome message after setup and server will respond)
-                        new FtpServer("0.0.0.0", port, context);
+                        new FtpServer("0.0.0.0", port, context, allowActiveMode);
 
                         return null;
                 }
