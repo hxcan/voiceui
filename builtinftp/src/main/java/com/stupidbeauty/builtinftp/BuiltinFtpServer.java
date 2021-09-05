@@ -7,6 +7,9 @@ import com.stupidbeauty.ftpserver.lib.FtpServer;
 
 public class BuiltinFtpServer
         {
+        private int port=1421; //!< 端口。
+        private FtpServer ftpServer=null; //!< Ftp服务器对象。
+        
                 private BuiltinFtpServer() {
                 }
 
@@ -22,10 +25,8 @@ public void start()
                 @Override
                 protected Void doInBackground(Void... params) {
                         //TCP client and server (Client will automatically send welcome message after setup and server will respond)
-                        new FtpServer("0.0.0.0", 1421, context);
+                        new FtpServer("0.0.0.0", port, context);
 
-                        //UDP client and server (Here the client explicitly sends a message)
-                        new com.github.reneweb.androidasyncsocketexamples.udp.Server("localhost", 7001);
                         return null;
                 }
         }.execute();
