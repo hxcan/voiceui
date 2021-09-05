@@ -519,7 +519,7 @@ public class FtpServer {
             //        send_data "200 #{@currentWorkingDirectory}\n"
 //        puts "200 #{@currentWorkingDirectory}\n"
 
-            String replyString="200 " + currentWorkingDirectory + "\n"; // 回复内容。
+            String replyString="257 " + currentWorkingDirectory + "\n"; // 回复内容。
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
