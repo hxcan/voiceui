@@ -24,7 +24,7 @@ import static com.stupidbeauty.builtinftp.Utils.shellExec;
 
 public class FtpServer {
     private Context context; //!< 执行时使用的上下文。
-
+    private byte[] dataSocketPendingByteArray=null; //!< 数据套接字数据内容 排队。
     private static final String TAG="Server"; //!< 输出调试信息时使用的标记
     private AsyncSocket socket; //!< 当前的客户端连接。
     private AsyncSocket data_socket; //!< 当前的数据连接。
@@ -322,11 +322,20 @@ public class FtpServer {
         } //if (data_socket!=null)
         else // 数据连接不存在
         {
-            notifyLsFailedDataConnectionNull(); // 告知，数据连接未建立。
+//             notifyLsFailedDataConnectionNull(); // 告知，数据连接未建立。
+            queueForDataSocket(output); // 将回复数据排队。
         } //else // 数据连接不存在
 
 
     } //private void sendListContent(String content, String currentWorkingDirectory)
+    
+    /**
+    * 将回复数据排队。
+    */
+    private void queueForDataSocket(String output) 
+    {
+        dataSocketPendingByteArray=output.getBytes(); // 排队。
+    } //private void queueForDataSocket(String output)
     
     
     /**
@@ -483,7 +492,7 @@ public class FtpServer {
         {
 //            send_data "230 \n"
 
-            Util.writeAll(socket, "230 \n".getBytes(), new CompletedCallback() {
+            Util.writeAll(socket, "230 Loged in.\n".getBytes(), new CompletedCallback() {
                 @Override
                 public void onCompleted(Exception ex) {
                     if (ex != null) throw new RuntimeException(ex);
@@ -496,7 +505,7 @@ public class FtpServer {
         {
             //        send_data "200 UNIX Type: L8\n"
 
-            Util.writeAll(socket, "200 UNIX Type: L8\\n".getBytes(), new CompletedCallback() {
+            Util.writeAll(socket, "215 UNIX Type: L8\\n".getBytes(), new CompletedCallback() {
                 @Override
                 public void onCompleted(Exception ex) {
                     if (ex != null) throw new RuntimeException(ex);
@@ -547,7 +556,7 @@ public class FtpServer {
             {
             currentWorkingDirectory=targetWorkingDirectory;
 
-            replyString="200 " + "\n"; // 回复内容。
+            replyString="250 cwd succeed" + "\n"; // 回复内容。
             
             } //if (photoDirecotry.isDirectory()) // 是个目录
                 else //不是个目录
@@ -575,7 +584,7 @@ public class FtpServer {
 //        elsif command =='TYPE'
 //        send_data "200 \n"
 
-            String replyString="200 " + "\n"; // 回复内容。
+            String replyString="200 binery type set" + "\n"; // 回复内容。
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
 
@@ -972,6 +981,22 @@ ex.printStackTrace(); //报告错误
     {
         this.data_socket=socket;
         Log.d(TAG, "handleDataAccept, [Server] data New Connection " + socket.toString());
+        
+        if (dataSocketPendingByteArray!=null) // 有等待发送的内容。
+        {
+                Util.writeAll(data_socket, dataSocketPendingByteArray, new CompletedCallback() {
+            @Override
+            public void onCompleted(Exception ex) {
+                if (ex != null) throw new RuntimeException(ex);
+                System.out.println("[Server] data Successfully wrote message");
+                
+                data_socket.close(); // 关闭套接字。
+                                        notifyLsCompleted(); // 告知已经发送目录数据。
+
+            }
+        });
+
+        } // if (dataSocketPendingByteArray!=null)
 
         socket.setDataCallback(
                 new DataCallback()
