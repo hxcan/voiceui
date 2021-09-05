@@ -39,7 +39,14 @@ public class FtpServer {
             throw new RuntimeException(e);
         }
 
+//         if (autoPort) // 使用自动端口
+//         {
+//         陈欣
+//         } //if (autoPort) // 使用自动端口
+//         else // 不使用自动端口
+//         {
         this.port = port;
+//         } //else // 不使用自动端口
 
         setup();
 
