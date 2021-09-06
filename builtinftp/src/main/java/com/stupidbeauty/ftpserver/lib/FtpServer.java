@@ -34,6 +34,7 @@ public class FtpServer {
     private String currentWorkingDirectory="/"; //!< 当前工作目录
     private File writingFile; //!< 当前正在写入的文件。
         private boolean allowActiveMode=true; //!< 是否允许主动模式。
+        private isUploading=false; //!< 是否正在上传。陈欣
 
     public FtpServer(String host, int port, Context context, boolean allowActiveMode) {
         this.context=context;
@@ -347,7 +348,7 @@ public class FtpServer {
 //         send_data("226 \n")
 //     end
 
-        String replyString="226 " + "\n"; // 回复内容。
+        String replyString="226 Stor completed." + "\n"; // 回复内容。
 
         Log.d(TAG, "reply string: " + replyString); //Debug.
 
@@ -1040,7 +1041,12 @@ ex.printStackTrace(); //报告错误
 //         FtpModule.instance.notifyStorCompleted
 //     end
 
+if (isUploading) // 是处于上传状态。
+{
                 notifyStorCompleted(); // 告知上传完成。
+                
+                isUploading=false; // 不再处于上传状态了。
+} //if (isUploading) // 是处于上传状态。
             }
         });
 
