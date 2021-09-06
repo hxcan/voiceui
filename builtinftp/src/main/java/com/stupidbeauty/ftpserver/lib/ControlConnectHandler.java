@@ -713,40 +713,6 @@ data51=data51.trim(); // 去掉末尾换行
 //        elsif command== 'PWD'
     } //private void processCommand(String command, String content)
 
-        /**
-    * 上传文件内容。
-    */
-    private void startStor(String data51, String currentWorkingDirectory) 
-    {
-        String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
-                    
-        wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
-                    
-        Log.d(TAG, "startStor: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
-                    
-        File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
-            
-            writingFile=photoDirecotry; // 记录文件。
-
-//             陈欣
-
-        if (photoDirecotry.exists())
-        {
-            photoDirecotry.delete();
-        }
-        
-                    				try //尝试构造请求对象，并且捕获可能的异常。
-		{
-
-        FileUtils.touch(photoDirecotry); //创建文件。
-        						} //try //尝试构造请求对象，并且捕获可能的异常。
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-    } //private void startStor(String data51, String currentWorkingDirectory) // 上传文件内容。
-
     /**
     * 处理目录列表命令。
     */
@@ -767,6 +733,39 @@ data51=data51.trim(); // 去掉末尾换行
 
             sendListContent(content, currentWorkingDirectory); // 发送目录列表数据。
     } //private void processListCommand(String content)
+
+    /**
+    * 上传文件内容。
+    */
+    private void startStor(String data51, String currentWorkingDirectory) 
+    {
+        String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory+data51; // 构造完整路径。
+                    
+        wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
+                    
+        Log.d(TAG, "startStor: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
+                    
+        File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
+            
+        writingFile=photoDirecotry; // 记录文件。
+        isUploading=true; // 记录，处于上传状态。
+
+//             陈欣
+
+        if (photoDirecotry.exists())
+        {
+            photoDirecotry.delete();
+        }
+        
+        try //尝试构造请求对象，并且捕获可能的异常。
+		{
+            FileUtils.touch(photoDirecotry); //创建文件。
+        } //try //尝试构造请求对象，并且捕获可能的异常。
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+    } //private void startStor(String data51, String currentWorkingDirectory) // 上传文件内容。
 
             private void handleConnectCompleted(Exception ex, final AsyncSocket socket) {
         if(ex != null) 
@@ -830,33 +829,28 @@ data51=data51.trim(); // 去掉末尾换行
         
         if (dataSocketPendingByteArray!=null) // 有等待发送的内容。
         {
-                Util.writeAll(data_socket, dataSocketPendingByteArray, new CompletedCallback() {
-            @Override
-            public void onCompleted(Exception ex) 
-            {
-                if (ex != null) throw new RuntimeException(ex);
-                System.out.println("[Server] data Successfully wrote message");
-                
-                notifyLsCompleted(); // 告知已经发送目录数据。
-            } //public void onCompleted(Exception ex) 
-        });
+            Util.writeAll(data_socket, dataSocketPendingByteArray, new CompletedCallback() {
+                @Override
+                public void onCompleted(Exception ex) 
+                {
+                    if (ex != null) throw new RuntimeException(ex);
+                    System.out.println("[Server] data Successfully wrote message");
+                    
+                    notifyLsCompleted(); // 告知已经发送目录数据。
+                } //public void onCompleted(Exception ex) 
+            });
         
-        dataSocketPendingByteArray=null; // 数据置空。
-
+            dataSocketPendingByteArray=null; // 数据置空。
         } // if (dataSocketPendingByteArray!=null)
 
         socket.setDataCallback(
-                new DataCallback()
-                {
-                    @Override
-                    public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
-//                         String content = new String(bb.getAllByteArray());
-//                         Log.d(TAG, "[Server] data Received Message " + content); // Debug
-                        
-                        receiveDataSocket(bb);
-                        
-                    }
-                });
+            new DataCallback()
+            {
+                @Override
+                public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
+                    receiveDataSocket(bb);
+                }
+            });
 
         socket.setClosedCallback(new CompletedCallback() {
             @Override
@@ -864,23 +858,14 @@ data51=data51.trim(); // 去掉末尾换行
                 if (ex != null) throw new RuntimeException(ex);
                 System.out.println("[Server] data Successfully closed connection");
                 
-//                                         notifyLsCompleted(); // 告知已经发送目录数据。
-
                 data_socket=null;
                 
-                
-//                     def unbind
-//         @file&.close
-//         
-//         FtpModule.instance.notifyStorCompleted
-//     end
-
-if (isUploading) // 是处于上传状态。
-{
-                notifyStorCompleted(); // 告知上传完成。
-                
-                isUploading=false; // 不再处于上传状态了。
-} //if (isUploading) // 是处于上传状态。
+                if (isUploading) // 是处于上传状态。
+                {
+                    notifyStorCompleted(); // 告知上传完成。
+                    
+                    isUploading=false; // 不再处于上传状态了。
+                } //if (isUploading) // 是处于上传状态。
             }
         });
 
