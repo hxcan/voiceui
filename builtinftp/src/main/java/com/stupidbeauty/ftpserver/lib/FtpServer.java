@@ -34,7 +34,7 @@ public class FtpServer {
     private String currentWorkingDirectory="/"; //!< 当前工作目录
     private File writingFile; //!< 当前正在写入的文件。
         private boolean allowActiveMode=true; //!< 是否允许主动模式。
-        private isUploading=false; //!< 是否正在上传。陈欣
+        private boolean isUploading=false; //!< 是否正在上传。陈欣
 
     public FtpServer(String host, int port, Context context, boolean allowActiveMode) {
         this.context=context;
