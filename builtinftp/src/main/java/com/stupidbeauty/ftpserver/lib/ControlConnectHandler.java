@@ -538,12 +538,6 @@ class ControlConnectHandler
 //
 //        send_data "227 Entering Passive Mode (#{a1},#{a2},#{a3},#{a4},#{p1},#{p2}) \n"
 
-                    Random random=new Random(); //随机数生成器。
-
-                int randomIndex=random.nextInt(65535-1025)+1025; //随机选择一个文件。
-
-
-        data_port=randomIndex; 
         
         setupDataServer(); // 初始化数据服务器。
         
@@ -878,33 +872,6 @@ data51=data51.trim(); // 去掉末尾换行
         });
     } //private void handleDataAccept(final AsyncSocket socket)
 
-        /**
-     * 启动数据传输服务器。
-     */
-    private void setupDataServer()
-    {
-        AsyncServer.getDefault().listen(host, data_port, new ListenCallback() {
-
-            @Override
-            public void onAccepted(final AsyncSocket socket)
-            {
-                handleDataAccept(socket);
-            } //public void onAccepted(final AsyncSocket socket)
-
-            @Override
-            public void onListening(AsyncServerSocket socket)
-            {
-                System.out.println("[Server] Server started listening for data connections");
-            }
-
-            @Override
-            public void onCompleted(Exception ex) {
-                if(ex != null) throw new RuntimeException(ex);
-                System.out.println("[Server] Successfully shutdown server");
-            }
-        });
-
-    } //private void setupDataServer()
 
 
     /**
@@ -981,4 +948,54 @@ ex.printStackTrace(); // 报告错误。
             } //public void onCompleted(Exception ex) 
         });
     } //private void handleAccept(final AsyncSocket socket)
+
+            /**
+     * 启动数据传输服务器。
+     */
+    private void setupDataServer()
+    {
+        Random random=new Random(); //随机数生成器。
+
+        int randomIndex=random.nextInt(65535-1025)+1025; //随机选择一个端口。
+
+        data_port=randomIndex; 
+
+//         try // 绑定端口。
+//         {
+        AsyncServer.getDefault().listen(host, data_port, new ListenCallback() {
+            @Override
+            public void onAccepted(final AsyncSocket socket)
+            {
+                handleDataAccept(socket);
+            } //public void onAccepted(final AsyncSocket socket)
+
+            @Override
+            public void onListening(AsyncServerSocket socket)
+            {
+                System.out.println("[Server] Server started listening for data connections");
+            }
+
+            @Override
+            public void onCompleted(Exception ex) {
+                if(ex != null) {
+//                 09-07 07:57:47.473 18998 19023 W System.err: java.lang.RuntimeException: java.net.BindException: Address already in use
+
+//                 throw new RuntimeException(ex);
+ex.printStackTrace();
+
+                    setupDataServer(); // 重新初始化。
+                }
+                else
+                {
+                System.out.println("[Server] Successfully shutdown server");
+                }
+                
+            }
+        });
+//         }
+//         catch (BindException e)
+//         {
+//         } //catch (BindException e)
+
+    } //private void setupDataServer()
 }
