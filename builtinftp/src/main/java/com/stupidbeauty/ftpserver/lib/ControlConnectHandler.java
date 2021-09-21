@@ -130,8 +130,6 @@ class ControlConnectHandler
                     
         wholeDirecotoryPath=wholeDirecotoryPath.replace("//", "/"); // 双斜杠替换成单斜杠
                     
-        Log.d(TAG, "processSizeCommand: wholeDirecotoryPath: " + wholeDirecotoryPath); // Debug.
-                    
         File photoDirecotry= new File(wholeDirecotoryPath); //照片目录。
             
         String replyString=""; // 回复字符串。
@@ -227,7 +225,7 @@ class ControlConnectHandler
 
         /**
      * 发送目录列表数据。
-     * @param content 目录路径
+     * @param content The path of the directory.
      * @param currentWorkingDirectory 当前工作目录。
      */
     private void sendListContent(String content, String currentWorkingDirectory)
@@ -242,15 +240,12 @@ class ControlConnectHandler
 //        #command: ls -la /
 //
 //            output=`#{command}`
-//        send_data("#{output}\n")
-//        puts "sent #{output}"
-//        FtpModule.instance.notifyLsCompleted
 
         String parameter=content.substring(5).trim(); // 获取额外参数。
         
         if (parameter.equals("-la")) // 忽略
         {
-        parameter=""; // 忽略成空白。
+            parameter=""; // 忽略成空白。
         } //if (parameter.equals("-la")) // 忽略
         
         
@@ -259,17 +254,9 @@ class ControlConnectHandler
 
         String wholeDirecotoryPath= context.getFilesDir().getPath() + currentWorkingDirectory; // 构造完整路径。
 
-        String output = getDirectoryContentList(wholeDirecotoryPath, parameter); // 获取目录的完整列表。
+        String output = getDirectoryContentList(wholeDirecotoryPath, parameter); // Get the whole directory list.
         
         Log.d(TAG, "output: " + output); // Debug
-        
-// -rw-r--r-- 1 nobody nobody     35179727 Oct 16 07:31 VID_20201015_181816.mp4
-// -rw-r--r-- 1 nobody nobody       243826 Jan 15 11:52 forum.php.jpg
-// -rw-r--r-- 1 nobody nobody       240927 Jan 16 11:15 forum.php.1.jpg
-// -rw-r--r-- 1 nobody nobody       205318 Jan 16 11:16 forum.php.2.jpg
-
-
-        Log.d(TAG, "sendListContent, data_socket: " + data_socket); // Debug
         
         if (data_socket!=null) // 数据连接存在
         {
@@ -289,7 +276,6 @@ class ControlConnectHandler
             queueForDataSocket(output); // 将回复数据排队。
         } //else // 数据连接不存在
 
-
     } //private void sendListContent(String content, String currentWorkingDirectory)
 
         /**
@@ -300,7 +286,7 @@ class ControlConnectHandler
         dataSocketPendingByteArray=output.getBytes(); // 排队。
     } //private void queueForDataSocket(String output)
 
-        /**
+    /**
     *  获取目录的完整列表。
     */
     private String getDirectoryContentList(String wholeDirecotoryPath, String nameOfFile)
@@ -385,7 +371,7 @@ class ControlConnectHandler
             } //if (photoDirecotry.exists()) // 文件存在
             else // 文件不 存在
             {
-            replyString="550 No directory traversal allowed in SIZE param\n"; // 文件不存在。
+                replyString="550 No directory traversal allowed in SIZE param\n"; // File does not exist.
             } //else // 文件不 存在
 
             Log.d(TAG, "reply string: " + replyString); //Debug.
@@ -464,9 +450,6 @@ class ControlConnectHandler
         {
             //        elsif command=='cwd'
 //        newWorkingDirectory=data[4..-1]
-//        puts "newWorkingDirectory: #{newWorkingDirectory}"
-//        @currentWorkingDirectory= newWorkingDirectory
-//        send_data "200 \n"
 
             String targetWorkingDirectory=content.substring(4).trim();
             
@@ -502,8 +485,8 @@ class ControlConnectHandler
                 public void onCompleted(Exception ex) {
                     if (ex != null) throw new RuntimeException(ex);
                     System.out.println("[Server] Successfully wrote message");
-                }
-            });
+                } //public void onCompleted(Exception ex) {
+            }); //Util.writeAll(socket, replyString.getBytes(), new CompletedCallback() {
 
 
         } //else if (command.equals("cwd")) // 切换工作目录
@@ -530,14 +513,6 @@ class ControlConnectHandler
             //        elsif command=='PASV'
 //            #227 Entering Passive Mode (a1,a2,a3,a4,p1,p2)
 //            #where a1.a2.a3.a4 is the IP address and p1*256+p2 is the port number.
-//        a1=a2=a3=a4=0
-//
-//            #1544
-//        p1=6
-//        p2=8
-//
-//        send_data "227 Entering Passive Mode (#{a1},#{a2},#{a3},#{a4},#{p1},#{p2}) \n"
-
         
         setupDataServer(); // 初始化数据服务器。
         
@@ -605,7 +580,7 @@ class ControlConnectHandler
                 }
             });
 
-        } //else if (command.equals("EPSV")) // 扩展被动模式
+        } //else if (command.equals("EPSV")) // Extended passive mode.
         else if (command.equals("list")) // 列出目录
         {
             processListCommand(content); // 处理目录列表命令。
@@ -682,8 +657,6 @@ data51=data51.trim(); // 去掉末尾换行
         {
             String replyString="150 \n"; // 回复内容。
 
-            Log.d(TAG, "reply string: " + replyString); //Debug.
-
             sendStringInBinaryMode(replyString);
 
             String data51=            content.substring(5);
@@ -701,10 +674,6 @@ data51=data51.trim(); // 去掉末尾换行
 
 //        def processCommand (command,data)
 //        if command== 'USER'
-//        send_data "230 \n"
-//        elsif command == 'SYST'
-//        send_data "200 UNIX Type: L8\n"
-//        elsif command== 'PWD'
     } //private void processCommand(String command, String content)
 
     /**
@@ -722,7 +691,7 @@ data51=data51.trim(); // 去掉末尾换行
                 public void onCompleted(Exception ex) {
                     if (ex != null) throw new RuntimeException(ex);
                     System.out.println("[Server] Successfully wrote message");
-                }
+                } //public void onCompleted(Exception ex) {
             });
 
             sendListContent(content, currentWorkingDirectory); // 发送目录列表数据。
@@ -768,7 +737,7 @@ data51=data51.trim(); // 去掉末尾换行
         }
         else // 无异常。
         {
-        this.data_socket=socket; // 记录数据连接。
+            this.data_socket=socket; // Remember the data connection.
 
 //         Util.writeAll(socket, "Hello Server".getBytes(), new CompletedCallback() {
 //             @Override
@@ -784,7 +753,7 @@ data51=data51.trim(); // 去掉末尾换行
             {
                 receiveDataSocket(bb);
             } //public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) 
-        });
+        }); //socket.setDataCallback(new DataCallback() {
 
         socket.setClosedCallback(new CompletedCallback() {
             @Override
@@ -813,7 +782,7 @@ data51=data51.trim(); // 去掉末尾换行
     }
 
         /**
-     * 接受数据连接
+     * Accept data connection.
      * @param socket 连接对象。
      */
     private void handleDataAccept(final AsyncSocket socket)
@@ -873,7 +842,6 @@ data51=data51.trim(); // 去掉末尾换行
     } //private void handleDataAccept(final AsyncSocket socket)
 
 
-
     /**
      * 接受新连接
      * @param socket 新连接的套接字对象
@@ -891,18 +859,12 @@ data51=data51.trim(); // 去掉末尾换行
                 String content = new String(bb.getAllByteArray());
                 Log.d(TAG, "[Server] Received Message " + content); // Debug
 
-                String command = content.split(" ")[0]; // 获取命令。
+                String command = content.split(" ")[0]; // Get the command.
 
 
                 command=command.trim();
-//                command = data.split(" ").first
-//
-//                processCommand( command,data)
-
 
                 processCommand(command, content); // 处理命令。
-
-
             }
         });
 
@@ -931,7 +893,7 @@ ex.printStackTrace(); // 报告错误。
                 }
                 else // 无异常
                 {
-                Log.d(TAG, "ftpmodule [Server] Successfully end connection");
+                    Log.d(TAG, "ftpmodule [Server] Successfully end connection");
                 } //else // 无异常
             }
         });
@@ -996,6 +958,5 @@ ex.printStackTrace();
 //         catch (BindException e)
 //         {
 //         } //catch (BindException e)
-
     } //private void setupDataServer()
 }
