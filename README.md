@@ -12,7 +12,7 @@ Source code: https://github.com/hxcan/builtinftp
 
 Demo application: https://github.com/hxcan/builtinftpdemo
 
-[![](https://stupidbeauty.com/ArticleImages/1903/0.jpg)]
+![](https://stupidbeauty.com/ArticleImages/1903/0.jpg)
 
 Add dependency
 ==
