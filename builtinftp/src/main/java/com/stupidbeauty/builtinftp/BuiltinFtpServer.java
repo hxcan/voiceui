@@ -3,6 +3,7 @@ package com.stupidbeauty.builtinftp;
 import android.content.Context;
 import android.os.AsyncTask;
 import com.stupidbeauty.ftpserver.lib.FtpServer;
+import java.net.BindException;
 
 public class BuiltinFtpServer
 {
@@ -17,11 +18,17 @@ public class BuiltinFtpServer
         this.errorListener = errorListener;
     } //public void setErrorListener(ErrorListener errorListener)    
     
-    public void onError(Integer errorCode)
+    public void onError(Integer errorCode) 
     {
         if (errorListener!=null)
         {
             errorListener.onError(errorCode); // Report error.
+        }
+        else // Not listener
+        {
+//             throw new BindException();
+            Exception ex = new BindException();
+            throw new RuntimeException(ex);
         }
     } //public void onError(Integer errorCode)
     
