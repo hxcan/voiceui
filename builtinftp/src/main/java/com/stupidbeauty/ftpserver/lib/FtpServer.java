@@ -1,5 +1,6 @@
 package com.stupidbeauty.ftpserver.lib;
 
+import java.net.BindException;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -23,11 +24,17 @@ import java.net.UnknownHostException;
 import static com.stupidbeauty.builtinftp.Utils.shellExec;
 
 public class FtpServer {
+    private ErrorListener errorListener=null; //!< Error listener. Chen xin. 
     private Context context; //!< 执行时使用的上下文。
     private static final String TAG="Server"; //!< 输出调试信息时使用的标记
     private InetAddress host;
     private int port;
-        private boolean allowActiveMode=true; //!< 是否允许主动模式。
+    private boolean allowActiveMode=true; //!< 是否允许主动模式。
+        
+    public void setErrorListener(ErrorListener errorListener)    
+    {
+        this.errorListener = errorListener;
+    } //public void setErrorListener(ErrorListener errorListener)    
 
     public FtpServer(String host, int port, Context context, boolean allowActiveMode) {
         this.context=context;
@@ -64,7 +71,27 @@ public class FtpServer {
 
             @Override
             public void onCompleted(Exception ex) {
-                if(ex != null) throw new RuntimeException(ex);
+                if(ex != null) 
+                {
+//                 Caused by: java.net.BindException: Address already in use
+
+                        
+                    if ( ex instanceof BindException )
+                    {  
+                        if (errorListener!=null)
+                        {
+                            errorListener.onError(Constants.ErrorCode.ADDRESS_ALREADY_IN_USE); // Report error. Chen xin.
+                        }
+                        else // No error listener
+                        {
+                            throw new RuntimeException(ex);
+                        } //else // No error listener
+                    }
+                    else // Other exceptions
+                    {
+                        throw new RuntimeException(ex);
+                    }
+                }
                 System.out.println("[Server] Successfully shutdown server");
             }
         });
