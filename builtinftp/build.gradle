@@ -30,7 +30,7 @@ dependencies
             compile 'com.koushikdutta.async:androidasync:2.1.7'
 
 // https://mvnrepository.com/artifact/commons-io/commons-io
-    compile 'commons-io:commons-io:2.11.0'
+    api 'commons-io:commons-io:2.11.0'
         }
 
 def siteUrl='https://stupidbeauty.com/Blog/'
