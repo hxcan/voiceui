@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version="2021.10.2"
+version="2021.10.3"
 
 android {
     compileSdkVersion 28
@@ -27,9 +27,8 @@ dependencies
             compile 'com.koushikdutta.async:androidasync:2.1.7'
 //             compile 'com.github.hxcan:AndroidAsyncSocket:2021.10.1'
     
-// https://mvnrepository.com/artifact/commons-io/commons-io
-    api 'commons-io:commons-io:2.11.0'
-        }
+    api 'com.github.hxcan:commons-io-ler:2021.10.4'
+}
 
 def siteUrl='https://stupidbeauty.com/Blog/'
 group="com.stupidbeauty"
