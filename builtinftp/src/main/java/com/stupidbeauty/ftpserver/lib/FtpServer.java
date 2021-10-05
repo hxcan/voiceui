@@ -7,11 +7,15 @@ import android.util.Log;
 import java.util.Date;    
 import java.time.format.DateTimeFormatter;
 import java.io.File;
-import com.koushikdutta.async.*;
+import com.koushikdutta.async.AsyncServerSocket;
+import com.koushikdutta.async.AsyncSocket;
+// import com.stupidbeauty.async.AsyncServer;
+import com.koushikdutta.async.AsyncServer;
+// import com.stupidbeauty.async.*;
 import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.callback.ListenCallback;
-import com.stupidbeauty.commons.io.FileUtils;
+import org.apache.commons.io.FileUtils;
 import com.koushikdutta.async.callback.ConnectCallback;
 import java.net.InetSocketAddress;
 import android.text.format.Formatter;
@@ -51,23 +55,22 @@ public class FtpServer {
         setup();
     }
 
-
     private void setup()
     {
         AsyncServer.getDefault().listen(host, port, new ListenCallback() {
 
-            @Override
-            public void onAccepted(final AsyncSocket socket)
-            {
-            ControlConnectHandler handler=new ControlConnectHandler(context, allowActiveMode, host); // 创建处理器。
-                handler.handleAccept(socket);
-            }
+        @Override
+        public void onAccepted(final AsyncSocket socket)
+        {
+        ControlConnectHandler handler=new ControlConnectHandler(context, allowActiveMode, host); // 创建处理器。
+            handler.handleAccept(socket);
+        }
 
-            @Override
-            public void onListening(AsyncServerSocket socket)
-            {
-                System.out.println("[Server] Server started listening for connections");
-            }
+        @Override
+        public void onListening(AsyncServerSocket socket)
+        {
+            System.out.println("[Server] Server started listening for connections");
+        }
 
             @Override
             public void onCompleted(Exception ex) {
