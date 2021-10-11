@@ -25,13 +25,6 @@ android {
 dependencies
 {
     compile 'com.koushikdutta.async:androidasync:2.1.7'
-//             compile 'com.github.hxcan:AndroidAsyncSocket:2021.10.3'
-    
-//     api 'com.github.hxcan:commons-io-ler:2021.10.6'
     implementation 'commons-io:commons-io:2.6'
+    implementation 'com.github.hxcan:ftpserver:2021.10.18'
 }
-
-def siteUrl='https://stupidbeauty.com/Blog/'
-group="com.stupidbeauty"
-
-Properties properties=new Properties()

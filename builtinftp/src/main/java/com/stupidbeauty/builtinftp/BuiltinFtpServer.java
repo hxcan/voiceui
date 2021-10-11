@@ -59,16 +59,7 @@ public class BuiltinFtpServer
     {
         ftpServerErrorListener=new FtpServerErrorListener(this);
     
-        ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode);
-        ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
-
-//     new AsyncTask<Void, Void, Void>() {
-//         @Override
-//                 protected Void doInBackground(Void... params) {
-//                     new FtpServer("0.0.0.0", port, context, allowActiveMode);
-// 
-//                     return null;
-//             }
-//         }.execute();
-    }
+        ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode, ftpServerErrorListener); // 创建服务器。
+//         ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
+    } //public void start()
 }
