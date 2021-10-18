@@ -61,5 +61,7 @@ public class BuiltinFtpServer
     
         ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode, ftpServerErrorListener); // 创建服务器。
 //         ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
+
+        ftpServer.setRootDirectory(context.getFilesDir()); // 设置根目录。
     } //public void start()
 }
