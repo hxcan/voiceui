@@ -269,6 +269,8 @@ public class VoiceUi
   @SuppressWarnings("StatementWithEmptyBody")
   public void commandRecognizebutton2(String text)
   {
+    playAlarm(); // 播放声音，表示已经提交失败。
+  
     int ret = 0;
 
     recognizeCounter=recognizeCounter+1; //计数．
@@ -283,11 +285,6 @@ public class VoiceUi
     } //if (mIat==null) //仍然创建失败。
     else //创建成功。
     {
-      if (!setParam()) //参数设置失败。
-      {
-        return;
-      } //if (!setParam()) //参数设置失败。
-
       ret = mIat.startSpeaking(text, null); // 开始合成。
       if (ret != ErrorCode.SUCCESS) //未能启动识别
       {
@@ -303,117 +300,18 @@ public class VoiceUi
     } //else //创建成功。
   } //public void commandRecognizebutton2()
 
-        /**
-     * 设置语言及区域参数字符串。
-     */
-    private void setLanguageAndAccentParameters()
+  /**
+    * 播放提示间，表明已经提交文字。
+    */
+  protected void playAlarm()
+  {
+    AudioManager audioManager=(AudioManager) (context.getSystemService(Context.AUDIO_SERVICE)); //获取声音管理器。
+
+    int ringerMode=audioManager.getRingerMode(); //获取声音模式。
+
+    if (ringerMode==AudioManager.RINGER_MODE_NORMAL) //有声音模式。
     {
-      boolean foundDirectLanguage=false; //是否已经直接找到匹配的语言
-
-      //获取系统当前的语言。
-      Locale locale=Locale.getDefault(); //获取默认语系。
-
-      String androidLocaleName=locale.toString(); //获取语系名字。
-
-      Locale zhCnLocale=Locale.SIMPLIFIED_CHINESE;
-
-      if (androidLocaleName.startsWith("zh_CN")) //简体中文。
-      {
-        foundDirectLanguage=true;
-      } //简体中文。
-      else if (androidLocaleName.startsWith("en")) //英语
-      {
-        foundDirectLanguage=true;
-      } //else if (androidLocaleName.startsWith("en")) //英语
-      else //其它语言。后面还有机会选择
-      {
-        foundDirectLanguage=false; //未直接找到匹配的语言
-      } //else //英语。
-
-      Locale[] locales = Locale.getAvailableLocales();
-      ArrayList<String> localcountries=new ArrayList<String>();
-      for(Locale l:locales)
-      {
-        localcountries.add(l.getDisplayLanguage().toString());
-      }
-      
-      String[] languages=(String[]) localcountries.toArray(new String[localcountries.size()]);
-
-      if (foundDirectLanguage) //直接找到了语言
-      {
-      } //if (foundDirectLanguage) //直接找到了语言
-      else //未直接找到语言
-      {
-        LocaleList localeList;
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N) //选择多种语言
-        {
-          localeList= LocaleList.getDefault(); //获取默认语言列表
-
-          int localeSize=localeList.size();
-
-          int localeCounter=0;
-
-          for(localeCounter=0; localeCounter< localeSize; localeCounter++)
-          {
-            Locale locale1=localeList.get(localeCounter);
-
-            androidLocaleName=locale1.toString(); //获取语系名字。
-
-            Log.d(TAG, "setLanguageAndAccentParameters, candidate language: " + androidLocaleName+ ", locale counter: " + localeCounter); //Debug.
-
-            if (androidLocaleName.startsWith("zh_CN")) //简体中文。
-            {
-              foundDirectLanguage=true;
-            } //简体中文。
-            else if (androidLocaleName.startsWith("en")) //英语
-            {
-              foundDirectLanguage=true;
-            } //else if (androidLocaleName.startsWith("en")) //英语
-            else //其它语言。后面还有机会选择
-            {
-              foundDirectLanguage=false; //未直接找到匹配的语言
-            } //else //英语。
-
-            if (foundDirectLanguage) //找到了。
-            {
-              break; //不用再找了
-            } //if (foundDirectLanguage) //找到了。
-          } //for(localeCounter=0; localeCounter< localeSize; localeCounter++)
-        } //if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N) //选择多种语言
-      } //else //未直接找到语言
-    } //private void setLanguageAndAccentParameters()
-
-    /**
-     * 参数设置
-     *
-     * @return 是否设置成功。
-     */
-    public boolean setParam()
-    {
-      boolean result = false;
-
-      if (mIat!=null) //识别器存在。
-      {
-        // 设置识别引擎
-        String mEngineType = SpeechConstant.TYPE_CLOUD;
-
-        mIat.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
-
-        setLanguageAndAccentParameters(); //设置语言及区域参数字符串。
-
-        result = true;
-
-        // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
-        // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
-        mIat.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
-
-        recordSoundFilePath=Environment.getExternalStorageDirectory() + "/voiceui/msc/tts."+ recognizeCounter +".wav"; //构造录音文件路径．
-
-        mIat.setParameter(SpeechConstant.TTS_AUDIO_PATH, recordSoundFilePath); // 设置声音存储路径。
-
-        mIat.setParameter(SpeechConstant.KEY_REQUEST_FOCUS, "false"); //不获取焦点。
-      } //if (mIat!=null) //识别器存在。
-
-      return result;
-    }
+      mediaPlayer.start();
+    } //if (ringerMode!=AudioManager.RINGER_MODE_NORMAL) //静音模式。
+  } //protected void playAlarm()
 }
