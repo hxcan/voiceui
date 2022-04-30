@@ -3,68 +3,68 @@ package com.stupidbeauty.voiceui;
 import com.google.gson.Gson;
 import com.stupidbeauty.hxlauncher.bean.VoicePackageMapJsonItem;
 import com.stupidbeauty.hxlauncher.bean.VoicePackageUrlMapData;
-import com.stupidbeauty.hxlauncher.bean.WakeLockPackageNameSetData;
-import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
+// import com.stupidbeauty.hxlauncher.bean.WakeLockPackageNameSetData;
+// import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
+// import android.os.AsyncTask;
+// import android.os.Build;
+// import android.os.Bundle;
 import android.content.res.AssetFileDescriptor;
-import android.inputmethodservice.InputMethodService;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
+// import android.inputmethodservice.InputMethodService;
+// import android.inputmethodservice.Keyboard;
+// import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
+// import java.util.ArrayList;
+// import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.HashSet;
-import com.iflytek.cloud.SpeechSynthesizer;
-import com.iflytek.cloud.ErrorCode;
-import com.iflytek.cloud.RecognizerListener;
-import com.iflytek.cloud.RecognizerResult;
-import com.iflytek.cloud.SpeechConstant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+// import java.util.HashSet;
+// import com.iflytek.cloud.SpeechSynthesizer;
+// import com.iflytek.cloud.ErrorCode;
+// import com.iflytek.cloud.RecognizerListener;
+// import com.iflytek.cloud.RecognizerResult;
+// import com.iflytek.cloud.SpeechConstant;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.Stack;
-import com.iflytek.cloud.ErrorCode;
-import com.iflytek.cloud.RecognizerListener;
-import com.iflytek.cloud.RecognizerResult;
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechError;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.LocaleList;
+// import java.util.List;
+// import java.util.Locale;
+// import java.util.Map;
+// import java.util.Random;
+// import java.util.Set;
+// import java.util.Stack;
+// import com.iflytek.cloud.ErrorCode;
+// import com.iflytek.cloud.RecognizerListener;
+// import com.iflytek.cloud.RecognizerResult;
+// import com.iflytek.cloud.SpeechConstant;
+// import com.iflytek.cloud.SpeechError;
+// import android.net.ConnectivityManager;
+// import android.net.NetworkInfo;
+// import android.os.Build;
+// import android.os.Bundle;
+// import android.os.Environment;
+// import android.net.NetworkInfo;
+// import android.os.Build;
+// import android.os.Bundle;
+// import android.os.Environment;
+// import android.os.LocaleList;
 import android.content.Context;
-import android.os.AsyncTask;
-import com.stupidbeauty.ftpserver.lib.FtpServer;
-import java.net.BindException;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import com.iflytek.cloud.SpeechRecognizer;
+// import android.os.AsyncTask;
+// import com.stupidbeauty.ftpserver.lib.FtpServer;
+// import java.net.BindException;
+// import android.util.Log;
+// import android.view.KeyEvent;
+// import android.view.View;
+// import android.view.Window;
+// import android.view.WindowManager;
+// import com.iflytek.cloud.SpeechRecognizer;
 import com.stupidbeauty.victoriafresh.VFile;
-import com.iflytek.cloud.SpeechUtility;
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechError;
-import com.iflytek.cloud.SpeechUtility;
-import com.stupidbeauty.voiceui.R;
+// import com.iflytek.cloud.SpeechUtility;
+// import com.iflytek.cloud.SpeechConstant;
+// import com.iflytek.cloud.SpeechError;
+// import com.iflytek.cloud.SpeechUtility;
+// import com.stupidbeauty.voiceui.R;
 
 public class VoiceUi
 {
@@ -73,10 +73,8 @@ public class VoiceUi
   private ErrorListener errorListener=null; //!< Error listener.
   private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
   private int port=1421; //!< Port.
-  private FtpServer ftpServer=null; //!< Ftp server object.
   private boolean allowActiveMode=true; //!<  Whether to allow active mode.
   private static final String TAG="VoiceUi"; //!< 输出调试信息时使用的标记。
-  private SpeechSynthesizer mIat; //!< 语言合成器。
   private String recordSoundFilePath; //!< 录音文件路径．
   private MediaPlayer mediaPlayer;
   private static final float BEEP_VOLUME = 0.20f;
@@ -92,11 +90,6 @@ public class VoiceUi
     if (errorListener!=null)
     {
       errorListener.onError(errorCode); // Report error.
-    }
-    else // Not listener
-    {
-      Exception ex = new BindException();
-      throw new RuntimeException(ex);
     }
   } //public void onError(Integer errorCode)
     
@@ -163,7 +156,6 @@ public class VoiceUi
     }
     catch (Exception ioe) 
     {
-      Log.w(TAG, ioe);
       mediaPlayer = null;
     }
 
@@ -204,7 +196,6 @@ public class VoiceUi
     }
     catch (IOException ioe) 
     {
-      Log.w(TAG, ioe);
       mediaPlayer = null;
     }
     return mediaPlayer;
@@ -226,43 +217,6 @@ public class VoiceUi
     commandRecognizebutton2(text); // 开始说话。
   } //public void start()
 
-  private final RecognizerListener mRecognizerListener=new RecognizerListener()
-  {
-    @Override
-    public void onVolumeChanged(int i, byte[] bytes)
-    {
-    }
-
-    @Override
-    public void onBeginOfSpeech()
-    {
-    }
-
-    @Override
-    public void onEndOfSpeech()
-    {
-    } //public void onEndOfSpeech()
-
-    @Override
-    public void onResult(RecognizerResult recognizerResult, boolean b)
-    {
-      //完整内容:
-      String text=recognizerResult.getResultString(); //结果字符串。
-    } //public void onResult(RecognizerResult recognizerResult, boolean b)
-
-    @Override
-    public void onError(SpeechError speechError)
-    {
-      String errorText=speechError.getErrorDescription(); //获取错误信息。
-      int errorCode=speechError.getErrorCode(); //获取错误码。
-    }
-
-    @Override
-    public void onEvent(int i, int i1, int i2, Bundle bundle) 
-    {
-    }
-  };
-
   /**
   * 在线命令词识别。
   */
@@ -270,34 +224,6 @@ public class VoiceUi
   public void commandRecognizebutton2(String text)
   {
     playAlarm(); // 播放声音，表示已经提交失败。
-  
-    int ret = 0;
-
-    recognizeCounter=recognizeCounter+1; //计数．
-
-    if (mIat==null) //识别器未创建。
-    {
-      mIat= SpeechSynthesizer.createSynthesizer(context, null); // 创建识别器。
-    } //if (mIat==null) //识别器未创建。
-
-    if (mIat==null) //仍然创建失败。
-    {
-    } //if (mIat==null) //仍然创建失败。
-    else //创建成功。
-    {
-      ret = mIat.startSpeaking(text, null); // 开始合成。
-      if (ret != ErrorCode.SUCCESS) //未能启动识别
-      {
-        if (ret == ErrorCode.ERROR_COMPONENT_NOT_INSTALLED)
-        {
-          // 未安装则跳转到提示安装页面
-          // mInstaller.install();
-        }
-      } //if (ret != ErrorCode.SUCCESS) //未能启动识别
-
-      String myString = "Messages";
-      int myInt = 12;
-    } //else //创建成功。
   } //public void commandRecognizebutton2()
 
   /**
