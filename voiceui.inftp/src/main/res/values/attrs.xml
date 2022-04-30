@@ -1,0 +1,21 @@
+<resources>
+
+    <!--
+         Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels.
+    -->
+    <declare-styleable name="ButtonBarContainerTheme">
+    </declare-styleable>
+
+        <declare-styleable name="RoundedCornersImage">
+        <attr name="cornerRadius" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="ExtendedListView">
+        <attr name="scrollBarPanel" format="reference" />
+        <attr name="scrollBarPanelInAnimation" format="reference" />
+        <attr name="scrollBarPanelOutAnimation" format="reference" />
+    </declare-styleable>
+
+</resources>

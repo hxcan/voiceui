@@ -1,0 +1,75 @@
+<resources>
+  <string name="app_name">HxLauncher</string>
+  <string name="applicationIcon">Application Icon</string>
+  <string name="empty" translatable="false" />
+  <string name="backgroundImage">Background image</string>
+  <string name="darkBackgroundImage">Dark the background image</string>
+  <string name="hxLauncherSettings">HxLauncher Settings</string>
+  <string name="hiveLayout">Hive layout</string>
+  <string name="apn_setting_username">Username</string>
+  <string name="setting_tab_name">Setting</string>
+  <string name="about_info_coverage">Coverage</string>
+  <string name="unlink_not_right">Not right</string>
+  <string name="about_help_feedback_title">Help And Feedback</string>
+  <string name="faq_title">FAQ</string>
+  <string name="login_in">Login</string>
+  <string name="login_login_button">Login</string>
+  <string name="loginout_loginout_button">Log Out</string>
+  <string name="stopWeb">Stop</string>
+  <string name="forwardWeb">Forward</string>
+  <string name="register">Register</string>
+  <string name="enterPassword">Enter password</string>
+  <string name="forgotPassword">Forgot password?</string>
+  <string name="registerInfo">Register information</string>
+  <string name="country">Country</string>
+  <string name="needUnlock">Need unlock</string>
+  <string name="chinaPlus86">China +86</string>
+  <string name="pleaseChooseCountry">Please choose your country</string>
+  <string name="inputValidationCode">Enter the validation code</string>
+  <string name="sendValidationCode">Send the validation code</string>
+  <string name="setPassword">Set the password</string>
+  <string name="emptyString" translatable="false"></string>
+  <string name="submit">Submit</string>
+  <string name="emailLogin">Login by email</string>
+  <string name="hxlauncherService">HxLauncher Service</string>
+  <string name="enable">Enable</string>
+  <string name="statusNormal">Ready</string>
+  <string name="queryq">Query</string>
+  <string name="charge">Charge</string>
+  <string name="about">About</string>
+  <string name="loginUsePhoneNumber">Login by phone</string>
+  <string name="phoneRegister">Register by phone</string>
+  <string name="email">Email</string>
+  <string name="password">Password</string>
+  <string name="passwordAgain">Repeat password</string>
+  <string name="locks">Lock</string>
+  <string name="loginSuccess">Logic successful</string>
+  <string name="goAndEnableLocationService">Enable it</string>
+  <string name="noNotEnableLocationService">Do not enable</string>
+  <string name="rateUs">Rate us</string>
+  <string name="msg_intent_failed">Sorry, the requested application could not be launched.</string>
+  <string name="button_ok">OK</string>
+  <string name="firstStepEnableLanIme">Auto run</string>
+  <string name="applicationFrequency">Application frequency</string>
+  <string name="myAccount">My account</string>
+  <string name="freeCredit">Free speech credit:</string>
+  <string name="paidCredit">Paid speech credit</string>
+  <array name="durationArray">
+    <item>0s</item>
+    <item>30s</item>
+    <item>1m</item>
+    <item>10m</item>
+    <item>30m</item>
+    <item>1h</item>
+    <item>2h</item>
+    <item>∞</item>
+  </array>
+
+    <string name="emailAddress">User name</string>
+    <string name="shortcutAdded">Shortcut added</string>
+    <string name="applicationAlias">Application alias</string>
+    <string name="pleaseSetHxLauncherAsTheDefaultLauncher">Please set HxLauncher as the default launcher.</string>
+    <string name="builtinShortcuts">Builtin shortcuts</string>
+    <string name="sayToMeAppName">Say to me:\"%1$s\"</string>
+    <string name="appNamePrompt">Messages</string>
+</resources>

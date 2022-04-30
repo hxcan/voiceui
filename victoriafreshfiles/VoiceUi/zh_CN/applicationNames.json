@@ -1,0 +1,413 @@
+{
+  "applicationNames": [
+    {
+      "packageName": "com.lexa.fakegps",
+      "readableApplicationName": "伪装位置"
+    },
+    {
+      "packageName": "com.sunglab.tripleafree",
+      "readableApplicationName": "三艺组合"
+    },
+    {
+      "packageName": "ebook.fb2.epub.reader",
+      "readableApplicationName": "电子书阅读器"
+    },
+    {
+      "packageName": "ee.kaader.colortouch",
+      "readableApplicationName": "颜画免费版"
+    },
+    {
+      "packageName": "com.king.blossomblast",
+      "readableApplicationName": "花花传奇"
+    },
+    {
+      "packageName": "com.thefinestartist.finestwebview.sample",
+      "readableApplicationName": "网页视图示例"
+    },
+    {
+      "packageName": "com.dokdoapps.mybabyfirework",
+      "readableApplicationName": "儿童烟花"
+    },
+    {
+      "packageName": "com.google.android.googlequicksearchbox",
+      "readableApplicationName": "谷歌"
+    },
+    {
+      "packageName": "com.samsung.groupcast",
+      "readableApplicationName": "组队游戏"
+    },
+    {
+      "packageName": "org.mozilla.firefox",
+      "readableApplicationName": "火狐浏览器"
+    },
+    {
+      "packageName": "com.sunglab.fluidartfree",
+      "readableApplicationName": "流光"
+    },
+    {
+      "packageName": "com.icecoldapps.sshserver",
+      "readableApplicationName": "SSH服务器"
+    },
+    {
+      "packageName": "com.blackdevelopers.babyxylophone",
+      "readableApplicationName": "儿童木琴"
+    },
+    {
+      "packageName": "com.eivaagames.RealChess3DFree",
+      "readableApplicationName": "三维国际象棋"
+    },
+    {
+      "packageName": "com.quarterborrowresult.customer",
+      "readableApplicationName": "拼图方块"
+    },
+    {
+      "packageName": "com.android.vending",
+      "readableApplicationName": "谷歌玩商店"
+    },
+    {
+      "packageName": "eu.chainfire.supersu",
+      "readableApplicationName": "超级用户"
+    },
+    {
+      "packageName": "com.neptuns.usefulknots",
+      "readableApplicationName": "实用绳结"
+    },
+    {
+      "packageName": "de.robv.android.xposed.installer",
+      "readableApplicationName": "暴露框架安装器"
+    },
+    {
+      "packageName": "com.google.android.apps.inbox",
+      "readableApplicationName": "收件箱"
+    },
+    {
+      "packageName": "org.ruboto.core",
+      "readableApplicationName": "Ruboto核心"
+    },
+    {
+      "packageName": "com.skycap.Kids_Wooden_Jigsaw",
+      "readableApplicationName": "儿童拼图"
+    },
+    {
+      "packageName": "com.synaptik.soundwave",
+      "readableApplicationName": "声波"
+    },
+    {
+      "packageName": "com.google.android.gms",
+      "readableApplicationName": "谷歌玩服务"
+    },
+    {
+      "packageName": "com.google.android.apps.playconsole",
+      "readableApplicationName": "谷歌玩控制台"
+    },
+    {
+      "packageName": "net.sourceforge.opencamera",
+      "readableApplicationName": "开放相机"
+    },
+    {
+      "packageName": "pool.snooker.pool",
+      "readableApplicationName": "桌球"
+    },
+    {
+      "packageName": "com.hypnotizerrr.appemboss",
+      "readableApplicationName": "眩晕"
+    },
+    {
+      "packageName": "com.eivaagames.RealPool3DFree",
+      "readableApplicationName": "三维桌球"
+    },
+    {
+      "packageName": "org.videolan.vlc",
+      "readableApplicationName": "视频播放器"
+    },
+    {
+      "packageName": "com.ilixa.ebp",
+      "readableApplicationName": "8位相机实验室"
+    },
+    {
+      "packageName": "com.google.android.apps.books",
+      "readableApplicationName": "谷歌玩图书"
+    },
+    {
+      "packageName": "ru.serjik.hexshaders",
+      "readableApplicationName": "六边形着色器"
+    },
+    {
+      "packageName": "com.bobamason.tunnellwp",
+      "readableApplicationName": "隧道动态壁纸"
+    },
+    {
+      "packageName": "org.ruboto.irb",
+      "readableApplicationName": "Ruboto交互界面"
+    },
+    {
+      "packageName": "com.easylabs.xylophone",
+      "readableApplicationName": "木琴"
+    },
+    {
+      "packageName": "be.grapher",
+      "readableApplicationName": "作图器免费版"
+    },
+    {
+      "packageName": "com.differencetenderwhite.skirt",
+      "readableApplicationName": "宝石拼图方块"
+    },
+    {
+      "packageName": "com.twitter.android",
+      "readableApplicationName": "推特"
+    },
+    {
+      "packageName": "com.math.games",
+      "readableApplicationName": "数学练习游戏"
+    },
+    {
+      "packageName": "com.yourim.matrixlivewallpapers",
+      "readableApplicationName": "黑客帝国动态壁纸"
+    },
+    {
+      "packageName": "com.appspot.pistatium.mahougen",
+      "readableApplicationName": "一画多痕"
+    },
+    {
+      "packageName": "com.google.android.play.games",
+      "readableApplicationName": "谷歌玩游戏"
+    },
+    {
+      "packageName": "com.rebeltwins.daddywasathief",
+      "readableApplicationName": "我爸曾是小偷"
+    },
+    {
+      "packageName": "com.github.reneweb.androidasyncsocketexamples",
+      "readableApplicationName": "异步套接字示例"
+    },
+    {
+      "packageName": "com.abi.balls.blockshooter",
+      "readableApplicationName": "球射击"
+    },
+    {
+      "packageName": "com.NikSanTech.FireDots3D",
+      "readableApplicationName": "三维火球"
+    },
+    {
+      "packageName": "com.forqan.tech.PrincessColoring",
+      "readableApplicationName": "公主涂色"
+    },
+    {
+      "packageName": "com.kauf.talking.baum.TalkingBabsyBaby",
+      "readableApplicationName": "说话小屁孩"
+    },
+    {
+      "packageName": "com.game5mobile.lineandwater",
+      "readableApplicationName": "开心水杯"
+    },
+    {
+      "packageName": "jp.co.craftegg.band",
+      "readableApplicationName": "少女乐团派对"
+    },
+    {
+      "packageName": "com.hello.CakeCookingShop",
+      "readableApplicationName": "蛋糕店"
+    },
+    {
+      "packageName": "klb.android.lovelive",
+      "readableApplicationName": "明星学生妹"
+    },
+    {
+      "packageName": "games.paveldogreat.fluidsimfree",
+      "readableApplicationName": "流体模拟免费版"
+    },
+    {
+      "packageName": "com.mindy.grap1",
+      "readableApplicationName": "火柴人荡秋千"
+    },
+    {
+      "packageName": "com.fruitscoloringbookfromuv.android",
+      "readableApplicationName": "水果涂色"
+    },
+    {
+      "packageName": "org.telegram.messenger",
+      "readableApplicationName": "电报"
+    },
+    {
+      "packageName": "ch.saragozza.nature",
+      "readableApplicationName": "自然免费版"
+    },
+    {
+      "packageName": "air.App2Eleven.KidsPaintDrawGlow",
+      "readableApplicationName": "儿童荧光画"
+    },
+    {
+      "packageName": "com.eyu.piano",
+      "readableApplicationName": "梦幻钢琴"
+    },
+    {
+      "packageName": "com.bigframes.color_road",
+      "readableApplicationName": "颜色之路"
+    },
+    {
+      "packageName": "com.apkpure.aegon",
+      "readableApplicationName": "安纯市场"
+    },
+    {
+      "packageName": "com.kids_coloring.kids_paint",
+      "readableApplicationName": "儿童涂色绘画"
+    },
+    {
+      "packageName": "com.OnePixelDevelopers.TimeTurner",
+      "readableApplicationName": "时间反转"
+    },
+    {
+      "packageName": "org.videolan.vlc.betav7neon",
+      "readableApplicationName": "视频局域网播放器"
+    },
+    {
+      "packageName": "org.fdroid.fdroid",
+      "readableApplicationName": "自由安卓市场"
+    },
+    {
+      "packageName": "com.bushiroad.en.bangdreamgbp",
+      "readableApplicationName": "少女乐团派对一"
+    },
+    {
+      "packageName": "com.warmcar.nf.x",
+      "readableApplicationName": "暖车"
+    },
+    {
+      "packageName": "org.osmdroid",
+      "readableApplicationName": "开放地图"
+    },
+    {
+      "packageName": "com.duckduckgo.mobile.android",
+      "readableApplicationName": "鸭鸭去"
+    },
+    {
+      "packageName": "com.xiaoi.shenzhen.ibotex.monitorsubsystem",
+      "readableApplicationName": "监控子系统"
+    },
+    {
+      "packageName": "com.crazylabs.lady.bug",
+      "readableApplicationName": "瓢虫跑酷"
+    },
+    {
+      "packageName": "fi.iki.kuitsi.bitbeaker",
+      "readableApplicationName": "位桶客户端"
+    },
+    {
+      "packageName": "com.pjmasks.moonlightheroes",
+      "readableApplicationName": "睡衣小英雄"
+    },
+    {
+      "packageName": "com.stupidbeauty.hxlauncher.voicecommandhitdataprocessor",
+      "readableApplicationName": "语音数据分析器"
+    },
+    {
+      "packageName": "com.stupidbeauty.gpstrack",
+      "readableApplicationName": "全球定位系统跟踪"
+    },
+    {
+      "packageName": "com.stupidbeauty.hxcandatediff",
+      "readableApplicationName": "日差"
+    },
+    {
+      "packageName": "tweeter.gif.twittervideodownloader",
+      "readableApplicationName": "下载推特视频"
+    },
+    {
+      "packageName": "com.stupidbeauty.sfilemanagerandroid",
+      "readableApplicationName": "漂亮文件管理器"
+    },
+    {
+      "packageName": "com.ferrero.magickinder.tablet",
+      "readableApplicationName": "神奇儿童乐园"
+    },
+    {
+      "packageName": "com.rovio.angrybirdsrio",
+      "readableApplicationName": "愤怒的小鸟"
+    },
+    {
+      "packageName": "com.svg.snakenbricks",
+      "readableApplicationName": "蛇与砖"
+    },
+    {
+      "packageName": "com.disney.disneycrossyroad_goo",
+      "readableApplicationName": "迪斯尼叉路口"
+    },
+    {
+      "packageName": "com.mattel.barbiesparkleblastkids",
+      "readableApplicationName": "芭芘时尚"
+    },
+    {
+      "packageName": "com.bandainamcogames.dbzdokkanww",
+      "readableApplicationName": "龙珠超激战"
+    },
+    {
+      "packageName": "org.sufficientlysecure.viewer",
+      "readableApplicationName": "文档查看器"
+    },
+    {
+      "packageName": "com.gamesforgirlsfree.unicorn",
+      "readableApplicationName": "独角兽装扮"
+    },
+    {
+      "packageName": "com.scopely.startrek",
+      "readableApplicationName": "星际迷航舰队指挥官"
+    },
+    {
+      "packageName": "com.teslacoilsw.launcher",
+      "readableApplicationName": "诺瓦启动器"
+    },
+    {
+      "packageName": "com.vega.launcher",
+      "readableApplicationName": "维佳启动器"
+    },
+    {
+      "packageName": "com.valvesoftware.underlords",
+      "readableApplicationName": "王下"
+    },
+    {
+      "packageName": "com.tinyroar.launcher",
+      "readableApplicationName": "启动器"
+    },
+    {
+      "packageName": "com.stupidbeauty.androidasasoundbox.player",
+      "readableApplicationName": "安卓即音箱"
+    },
+    {
+      "packageName": "com.issist.acclauncher",
+      "readableApplicationName": "启动器"
+    },
+    {
+      "packageName": "com.kingsgroup.sos",
+      "readableApplicationName": "生存之州"
+    },
+    {
+      "packageName": "com.example.android.camera2basic",
+      "readableApplicationName": "相机2基本示例"
+    },
+    {
+      "packageName": "com.stupidbeauty.qtdocchinese.free",
+      "readableApplicationName": "QT文档中文翻译"
+    },
+    {
+      "packageName": "is.shortcut",
+      "readableApplicationName": "精灵启动器"
+    },
+    {
+      "packageName": "com.xiaoi.shenzhen.ibotex.voicerecognizemanager",
+      "readableApplicationName": "语音识别管理器"
+    },
+    {
+      "packageName": "com.xiaoi.shenzhen.ibotex.licensefingerprint",
+      "readableApplicationName": "许可证指纹计算"
+    },
+    {
+      "packageName": "com.stupidbeauty.nospaceleftondevice",
+      "readableApplicationName": "磁盘无空间"
+    },
+    {
+      "packageName": "com.nordcurrent.canteenhd",
+      "readableApplicationName": "烹饪发烧友"
+    }
+    
+  ]
+}

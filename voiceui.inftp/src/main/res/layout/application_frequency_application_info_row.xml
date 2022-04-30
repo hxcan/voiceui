@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeNewsLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="14dp"
+    android:background="?android:attr/selectableItemBackground"
+
+    android:gravity="center_horizontal"
+    tools:ignore="Overdraw">
+
+    <com.andexert.library.RippleView
+        android:id="@+id/launchRipple"
+        app:rv_rippleDuration="100"
+        app:rv_color="#170358"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/applicationIconrightimageView2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="false"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/applicationIcon"
+            android:src="@drawable/vector_66_11" />
+
+        <TextView
+            android:id="@+id/rightTextoperationMethodactTitletextView2"
+            style="@style/AudioFileInfoOverlayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/applicationIconrightimageView2"
+            android:background="@drawable/back"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+    </com.andexert.library.RippleView>
+
+    <!--<SeekBar-->
+        <!--android:id="@+id/durationseekBar"-->
+        <!--style="@style/Widget.AppCompat.SeekBar.Discrete"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/autoRunswitch1"-->
+        <!--android:max="10"-->
+        <!--android:progress="3" />-->
+
+    <com.warkiz.tickseekbar.TickSeekBar
+        android:id="@+id/durationSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/launchRipple"
+        app:tsb_max="7"
+        app:tsb_min="0"
+        app:tsb_progress="0"
+        app:tsb_show_tick_marks_type="oval"
+        app:tsb_show_tick_texts="above"
+        app:tsb_thumb_size="16dp"
+        app:tsb_tick_marks_size="8dp"
+        app:tsb_tick_texts_array="@array/durationArray"
+        app:tsb_tick_texts_size="13sp"
+        app:tsb_ticks_count="8"
+        app:tsb_track_background_size="2dp"
+        app:tsb_track_progress_size="3dp" />
+
+</RelativeLayout>

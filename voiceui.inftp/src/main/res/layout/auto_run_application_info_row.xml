@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeNewsLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="14dp"
+    android:background="?android:attr/selectableItemBackground"
+
+    android:gravity="center_horizontal"
+    tools:ignore="Overdraw">
+
+    <com.andexert.library.RippleView
+        android:id="@+id/launchRipple"
+        app:rv_rippleDuration="100"
+        app:rv_color="#170358"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/applicationIconrightimageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:adjustViewBounds="true"
+            android:src="@drawable/vector_66_11"
+            android:contentDescription="@string/applicationIcon"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/rightTextoperationMethodactTitletextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentTop="false"
+            android:text="@string/empty"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/applicationIconrightimageView2"
+            android:gravity="center_horizontal"
+            style="@style/AudioFileInfoOverlayText"
+            android:background="@drawable/back" />
+
+    </com.andexert.library.RippleView>
+
+    <Switch
+        android:id="@+id/autoRunswitch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/launchRipple"
+        android:layout_centerHorizontal="true"
+        android:textSize="36sp"
+        android:theme="@style/Base.Widget.AppCompat.CompoundButton.Switch" />
+
+
+</RelativeLayout>

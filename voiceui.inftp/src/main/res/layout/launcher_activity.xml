@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="false"
+    tools:context=".LauncherActivity"
+    android:id="@+id/launcher_activity"
+    >
+
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.88"
+        android:clickable="true"
+        android:contentDescription="@string/backgroundImage"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/stopusingphone"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:background="@android:color/black"
+        android:contentDescription="@string/darkBackgroundImage"
+        tools:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:indeterminate="true"
+        android:progressDrawable="@drawable/progress_horizontal1"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/statustextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:textColor="@color/yellow"
+        android:textSize="28sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/articleListmy_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:scrollbars="vertical" />
+
+    <com.example.administrator.douyin.Love2
+        android:id="@+id/loveAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:clickable="false"
+        />
+
+    <com.andexert.library.RippleView
+        android:id="@+id/launchRipple"
+        app:rv_rippleDuration="100"
+        app:rv_color="#170358"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        >
+        <ImageView
+            android:id="@+id/applicationIconrightimageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:adjustViewBounds="true"
+            android:src="@drawable/vector_66_11"
+            android:contentDescription="@string/applicationIcon"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/rightTextoperationMethodactTitletextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentTop="false"
+            android:text="@string/empty"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/applicationIconrightimageView2"
+            android:gravity="center_horizontal"
+            style="@style/AudioFileInfoOverlayText"
+            android:background="@drawable/back" />
+    </com.andexert.library.RippleView>
+
+                <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.2"
+        android:background="@android:color/black"
+        android:contentDescription="@string/darkBackgroundImage"
+                    android:layout_alignLeft="@id/voiceAssistantLayout"
+                    android:layout_alignRight="@id/voiceAssistantLayout"
+                    android:layout_alignTop="@id/voiceAssistantLayout"
+                    android:layout_alignBottom="@id/voiceAssistantLayout"
+        tools:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/voiceAssistantLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginBottom="48dp"
+        android:alwaysDrawnWithCache="false"
+        android:animateLayoutChanges="true"
+        android:clickable="true"
+        android:focusable="auto"
+        android:focusableInTouchMode="true">
+        
+
+        <ImageView
+            android:id="@+id/microphoneIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:alpha="1"
+            android:background="@drawable/record_button_go_dark"
+            android:clickable="true"
+            android:contentDescription="@string/backgroundImage"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/hitApplicationIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@id/microphoneIcon"
+            android:alpha="1"
+            android:contentDescription="@string/darkBackgroundImage"
+            android:scaleType="centerCrop"
+            android:visibility="invisible" />
+        
+                <TextView
+            android:layout_toRightOf="@id/hitApplicationIcon"
+            android:layout_centerVertical="true"
+            android:id="@+id/applicationNameTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentTop="false"
+            android:text="@string/sayToMeAppName"
+            style="@style/AudioFileInfoOverlayText"
+            android:background="@drawable/back" />
+
+    </RelativeLayout>
+</RelativeLayout>

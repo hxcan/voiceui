@@ -1,0 +1,335 @@
+{
+  "builtinShortcuts": [
+    {
+      "packageName": "cn.nubia.browser",
+      "activities": [
+        "com.android.browser.ComboViewActivity",
+        "com.android.browser.qrcode.CaptureActivity",
+        "com.android.browser.SearchActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.security2",
+      "activities": [
+        "cn.nubia.security.garbageclean.ui.GarbageCleanActivity",
+        "cn.nubia.security.garbageclean.ui.MobileqqCleanActivity",
+        "cn.nubia.security.garbageclean.ui.WeiXinCleanActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.music.preset",
+      "activities": [
+        "cn.nubia.music.activity.SearchActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.deskclock.preset",
+      "activities": [
+        "cn.nubia.deskclock.activity.AddAlarmActivity"
+      ]
+    },
+    {
+      "packageName": "cn.amazon.mShop.android",
+      "activities": [
+        "com.amazon.mShop.clouddrive.CloudDriveUploadActivity",
+        "com.amazon.mShop.search.SearchActivity",
+        "com.amazon.windowshop.wishlist.WSWishListActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.neostore",
+      "activities": [
+        "cn.nubia.neostore.ui.search.SearchActivity",
+        "cn.nubia.neostore.ui.manage.ManageActivity"
+      ]
+    },
+    {
+      "packageName": "com.stupidbeauty.sarcodescanner",
+      "activities": [
+        "com.google.zxing.client.android.share.ShareActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.gallery3d",
+      "activities": [
+        "cn.nubia.gallery3d.app.Wallpaper"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.myfile",
+      "activities": [
+        "cn.nubia.myfile.ui.cloud.CloudFileListActivity",
+        "cn.nubia.myfile.ui.search.SearchActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.thememanager",
+      "activities": [
+        "cn.nubia.thememanager.ui.activity.MyThemeActivity",
+        "cn.nubia.thememanager.ui.activity.MyCouponsActivity",
+        "cn.nubia.thememanager.ui.activity.AodOnlineActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.mms",
+      "activities": [
+        "cn.nubia.mms.ui.ComposeMessageActivity"
+      ]
+    },
+    {
+      "packageName": "org.wikipedia",
+      "activities": [
+        "org.wikipedia.search.SearchActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.settings",
+      "activities": [
+        "com.android.settings.TetherSettings",
+        "com.android.settings.Settings$LanguageAndInputSettingsActivity",
+        "com.android.settings.wallpaper.WallpaperSuggestionActivity",
+        "com.android.settings.Settings$HighPowerApplicationsActivity",
+        "com.android.settings.RunningServices",
+        "com.android.settings.Settings$StorageUseActivity",
+        "com.android.settings.Settings$StorageDashboardActivity",
+        "com.android.settings.Settings$NotificationAppListActivity",
+        "cn.nubia.settings.applications.AppTypeListActivity",
+        "com.android.settings.Settings$DevelopmentSettingsDashboardActivity",
+        "com.android.settings.wifi.mobileap.WifiApSettings",
+        "com.android.settings.Settings$DevelopmentSettingsActivity",
+        "com.android.settings.InkeffectPreview",
+        "com.android.settings.personalvibration.PersonalVibration",
+        "com.android.settings.lockscreenshortcut.LockScreenShortcutSettings"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.soundrecorder.preset",
+      "activities": [
+        "cn.nubia.soundrecorder.ui.RecordListActivity"
+      ]
+    },
+    {
+      "packageName": "cn.nubia.contacts",
+      "activities": [
+        "cn.nubia.contacts.vcard.ImportVCardActivity",
+        "cn.nubia.contacts.merge.MergeContactsActivity",
+        "cn.nubia.contacts.shortcutcall.ShortcutCallSettingsActivity"
+      ]
+    },
+    {
+      "packageName": "com.eg.android.AlipayGphone",
+      "activities": [
+        "com.eg.android.AlipayGphone.FastStartActivity"
+      ]
+    },
+    {
+      "packageName": "com.evenwell.gallery",
+      "activities": [
+        "com.android.gallery3d.app.Wallpaper",
+        "com.android.gallery3d.newfiltershow.NewFilterShowActivity"
+      ]
+    },
+    {
+      "packageName": "com.hmdglobal.appstore",
+      "activities": [
+        "com.siui.android.appstore.view.activity.DownloadActivity",
+        "com.siui.android.appstore.view.activity.SearchActivity"
+      ]
+    },
+    {
+      "packageName": "com.youku.phone",
+      "activities": [
+        "com.ali.comic.sdk.ui.activity.ComicBookshelfActivity",
+        "com.youku.ad.detail.container.download.DownloadManagerActivity",
+        "com.youku.saosao.activity.CaptureActivity"
+      ]
+    },
+    {
+      "packageName": "com.tencent.qqmusic",
+      "activities": [
+        "com.tencent.qqmusic.activity.RecognizerActivity",
+        "com.tencent.qqmusic.recognize.RecognizeHistoryActivity"
+      ]
+    },
+    {
+      "packageName": "cmb.pb",
+      "activities": [
+        "com.google.zxing.client.android.CaptureActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.contacts",
+      "activities": [
+        "com.android.contacts.fih.CallHistoryActivity",
+        "com.android.contacts.activities.SearchContactsActivity",
+        "com.sec.android.app.contacts.activities.SpeedDialActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.mms",
+      "activities": [
+        "com.android.mms.ui.ComposeMessageActivity",
+        "com.android.mms.ui.ManageSimMessages",
+        "com.android.mms.ui.FihBlackList.SpamTraditionalList",
+        "com.zte.mms.ui.box_ui.BoxListTabActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.calendar",
+      "activities": [
+        "com.android.calendar.EditEventActivity",
+        "com.android.calendar.SearchActivity",
+        "com.android.calendar.huangli.YiJiSearchActivity"
+      ]
+    },
+    {
+      "packageName": "com.worldwidebrand.wbi2",
+      "activities": [
+        "com.worldwidebrands.wbi2.SearchActivity",
+        "com.worldwidebrands.wbi2.SavedSupplierActivity"
+      ]
+    },
+    {
+      "packageName": "com.tencent.wework",
+      "activities": [
+        "com.tencent.wework.setting.controller.SettingStorageActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.chrome",
+      "activities": [
+        "org.chromium.chrome.browser.incognito.IncognitoTabLauncher"
+      ]
+    },
+    {
+      "packageName": "com.nbc.datatransfer",
+      "activities": [
+        "com.nbc.datatransfer.NewPhoneActivity"
+      ]
+    },
+    {
+      "packageName": "com.nbc.music",
+      "activities": [
+        "com.nbc.music.QueryBrowserActivity",
+        "com.nbc.music.VideoBrowserActivity"
+      ]
+    },
+    {
+      "packageName": "com.nbc.browser",
+      "activities": [
+        "com.nbc.browser.view.activity.BookmarkActivity",
+        "com.zhangyue.iReader.main.MainActivity"
+      ]
+    },
+    {
+      "packageName": "org.mozilla.firefox",
+      "activities": [
+        "org.mozilla.gecko.fxa.activities.FxAccountStatusActivity"
+      ]
+    },
+    {
+      "packageName": "com.jingdong.app.mall",
+      "activities": [
+        "com.jingdong.app.mall.open.MessageNotificationActivity"
+      ]
+    },
+    {
+      "packageName": "com.yipiao",
+      "activities": [
+        "com.zt.base.qrcode.CaptureActivity"
+      ]
+    },
+    {
+      "packageName": "com.qiyi.video.child",
+      "activities": [
+        "com.qiyi.video.child.ResetLockedActivity"
+      ]
+    },
+    {
+      "packageName": "com.baidu.netdisk",
+      "activities": [
+        "com.baidu.netdisk.ui.transfer.TransferListTabActivity",
+        "com.baidu.inote.ui.MainActivity",
+        "com.baidu.graph.sdk.GraphActivity"
+      ]
+    },
+    {
+      "packageName": "com.nbc.willcloud.themestore",
+      "activities": [
+        "com.zookingsoft.themestore.view.font.FontActivity",
+        "com.zookingsoft.themestore.view.wallpaper.WallpaperActivity",
+        "com.zookingsoft.themestore.view.ringtone.RingtoneActivity"
+      ]
+    },
+    {
+      "packageName": "com.sec.android.gallery3d",
+      "activities": [
+        "com.sec.android.gallery3d.app.Wallpaper",
+        "com.sec.android.gallery3d.app.LockScreen",
+        "com.sec.android.gallery3d.app.BothScreen"
+      ]
+    },
+    {
+      "packageName": "com.android.providers.downloads.ui",
+      "activities": [
+        "com.android.providers.downloads.ui.DownloadList"
+      ]
+    },
+    {
+      "packageName": "com.sec.android.app.myfiles",
+      "activities": [
+        "com.sec.android.app.myfiles.search.SearchResultActivity"
+      ]
+    },
+    {
+      "packageName": "com.sec.android.widgetapp.diotek.smemo",
+      "activities": [
+        "com.sec.android.widgetapp.q1_penmemo.FromSvoiceActivity"
+      ]
+    },
+    {
+      "packageName": "com.sec.android.app.clockpackage",
+      "activities": [
+        "com.sec.android.app.clockpackage.alarm.AlarmDetail"
+      ]
+    },
+    {
+      "packageName": "com.oasisfeng.greenify",
+      "activities": [
+        "com.oasisfeng.greenify.HibernateAndLockScreen"
+      ]
+    },
+    {
+      "packageName": "com.uniriho.szt",
+      "activities": [
+        "com.uniriho.szt.ui.activity.transport.MetroStationActivity",
+        "com.uniriho.szt.ui.activity.card.QueryOverMoneyActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.gallery3d",
+      "activities": [
+        "com.android.gallery3d.app.Wallpaper",
+        "com.android.gallery3d.app.LockWallpaper"
+      ]
+    },
+    {
+      "packageName": "cn.zte.recorder",
+      "activities": [
+        "cn.zte.recorder.SoundRecorder"
+      ]
+    },
+    {
+      "packageName": "com.android.mediacenter",
+      "activities": [
+        "com.android.mediacenter.content.onlinecolumn.columnlayout.AudioBookActivity"
+      ]
+    },
+    {
+      "packageName": "com.android.browser",
+      "activities": [
+        "com.uc.browser.cooperation.bdls.BDLSActivity"
+      ]
+    }
+  ]
+}
