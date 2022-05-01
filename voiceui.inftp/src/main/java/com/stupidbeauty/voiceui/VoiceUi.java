@@ -195,7 +195,7 @@ public class VoiceUi
 //       mediaPlayer.setDataSource(vfsDatafileDescriptor, soundStartOffset, soundLength); // 设置数据源。
       
 //       file.close();
-      mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
+//       mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
       mediaPlayer.prepare();
     }
     catch (IOException ioe) 
