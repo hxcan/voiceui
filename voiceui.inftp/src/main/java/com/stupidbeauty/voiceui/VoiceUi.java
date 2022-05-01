@@ -166,7 +166,7 @@ public class VoiceUi
     int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
 
 //     AssetFileDescriptor file = activity.getResources().openRawResourceFd(vfsDatafileDescriptor); //提示音。
-    AssetFileDescriptor file = activity.getResources().openRawResourceFd(com.stupidbeauty.voiceui.R.raw.victoriafreshdata_voiceui); //提示音。
+//     AssetFileDescriptor file = activity.getResources().openRawResourceFd(com.stupidbeauty.voiceui.R.raw.victoriafreshdata_voiceui); //提示音。
 
     try 
     {
@@ -194,7 +194,7 @@ public class VoiceUi
       mediaPlayer.setDataSource(soundMediaSource); // 设置数据源。
 //       mediaPlayer.setDataSource(vfsDatafileDescriptor, soundStartOffset, soundLength); // 设置数据源。
       
-      file.close();
+//       file.close();
       mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
       mediaPlayer.prepare();
     }
