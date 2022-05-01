@@ -105,11 +105,11 @@ public class VoiceUi
 
       String fullQrcFileName=":/VoiceUi/"+qrcFileName; //构造完整的qrc文件名。
       
-//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
-//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
+      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
+      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
 
-      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
-      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
+//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
 
 
 //       mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
@@ -156,7 +156,11 @@ public class VoiceUi
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
 //     AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.victoriafreshdata_voiceui); //提示音。
-    int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+
+//     context.getPackageName()
+
+//     int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+    int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
 
     AssetFileDescriptor file = activity.getResources().openRawResourceFd(vfsDatafileDescriptor); //提示音。
 
@@ -167,11 +171,11 @@ public class VoiceUi
 
       String fullQrcFileName=":/VoiceUi/"+qrcFileName; //构造完整的qrc文件名。
       
-//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
-//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
+      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
+      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
 
-      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
-      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
+//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
 
 
 //       mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
