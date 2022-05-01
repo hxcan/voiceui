@@ -162,7 +162,8 @@ public class VoiceUi
 //     int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
     int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
 
-    AssetFileDescriptor file = activity.getResources().openRawResourceFd(vfsDatafileDescriptor); //提示音。
+//     AssetFileDescriptor file = activity.getResources().openRawResourceFd(vfsDatafileDescriptor); //提示音。
+    AssetFileDescriptor file = activity.getResources().openRawResourceFd(com.stupidbeauty.voiceui.R.raw.victoriafreshdata_voiceui); //提示音。
 
     try 
     {
