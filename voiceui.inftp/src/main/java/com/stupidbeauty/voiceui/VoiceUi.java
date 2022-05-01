@@ -200,6 +200,7 @@ public class VoiceUi
     }
     catch (IOException ioe) 
     {
+      ioe.printStackTrace(); // 报告错误。
       mediaPlayer = null;
     }
     return mediaPlayer;
