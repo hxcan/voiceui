@@ -1,10 +1,13 @@
 package com.stupidbeauty.voiceui;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.upokecenter.cbor.CBORObject;
+//import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.gson.Gson;
 import com.stupidbeauty.hxlauncher.bean.VoicePackageMapJsonItem;
 import com.stupidbeauty.hxlauncher.bean.VoicePackageUrlMapData;
-// import com.stupidbeauty.hxlauncher.bean.WakeLockPackageNameSetData;
-// import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
 import android.media.MediaPlayer;
 // import android.os.AsyncTask;
 // import android.os.Build;
@@ -28,27 +31,6 @@ import java.util.HashMap;
 // import java.util.Arrays;
 // import java.util.Collection;
 import java.util.HashMap;
-// import java.util.List;
-// import java.util.Locale;
-// import java.util.Map;
-// import java.util.Random;
-// import java.util.Set;
-// import java.util.Stack;
-// import com.iflytek.cloud.ErrorCode;
-// import com.iflytek.cloud.RecognizerListener;
-// import com.iflytek.cloud.RecognizerResult;
-// import com.iflytek.cloud.SpeechConstant;
-// import com.iflytek.cloud.SpeechError;
-// import android.net.ConnectivityManager;
-// import android.net.NetworkInfo;
-// import android.os.Build;
-// import android.os.Bundle;
-// import android.os.Environment;
-// import android.net.NetworkInfo;
-// import android.os.Build;
-// import android.os.Bundle;
-// import android.os.Environment;
-// import android.os.LocaleList;
 import android.content.Context;
 // import android.os.AsyncTask;
 // import com.stupidbeauty.ftpserver.lib.FtpServer;
@@ -117,15 +99,17 @@ public class VoiceUi
   {
     HashMap<String, String> packageNameApplicationNameMap=new HashMap<>(); // 结果。
     
-      try 
+    try 
     {
       String qrcFileName="voiceSoundMap.json"; //文件名。
-//       String qrcFileName=voiceUiTextSoundFileMap.get(text); // 声音文件名。
 
       String fullQrcFileName=":/VoiceUi/"+qrcFileName; //构造完整的qrc文件名。
       
-      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
-      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
+//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
+//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
+
+      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
 
 
 //       mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
@@ -133,6 +117,8 @@ public class VoiceUi
 
 //       byte[] fileContent= qrcHtmlFile.getFileContent(); //将照片文件内容全部读取。
       String fileContent=qrcHtmlFile.getFileTextContent(); //获取文件的完整内容。
+      
+      Log.d(TAG, "loadVoiceUiTextSoundFileMap, file content: " + fileContent); // Debug.
 
       Gson gson=new Gson();
 
@@ -169,8 +155,11 @@ public class VoiceUi
     MediaPlayer mediaPlayer = new MediaPlayer();
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-    AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.victoriafreshdata_voiceui); //提示音。
-    
+//     AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.victoriafreshdata_voiceui); //提示音。
+    int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+
+    AssetFileDescriptor file = activity.getResources().openRawResourceFd(vfsDatafileDescriptor); //提示音。
+
     try 
     {
 //       String qrcFileName="voicePackageNameMap.ost"; //文件名。
@@ -178,8 +167,11 @@ public class VoiceUi
 
       String fullQrcFileName=":/VoiceUi/"+qrcFileName; //构造完整的qrc文件名。
       
-      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
-      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
+//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
+//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
+
+      int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
+      int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
 
 
 //       mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
@@ -189,6 +181,7 @@ public class VoiceUi
       int soundStartOffset=qrcHtmlFile.getStartOffset();
 
       mediaPlayer.setDataSource(file.getFileDescriptor(), soundStartOffset, soundLength); // 设置数据源。
+//       mediaPlayer.setDataSource(vfsDatafileDescriptor, soundStartOffset, soundLength); // 设置数据源。
       
       file.close();
       mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
@@ -210,8 +203,6 @@ public class VoiceUi
 
   public void say(String text)
   {
-//     assessInitializeMsc(); // 考虑要不要初始化讯飞语音合成。
-
     mediaPlayer = buildMediaPlayer(context, text);
 
     commandRecognizebutton2(text); // 开始说话。
@@ -220,7 +211,6 @@ public class VoiceUi
   /**
   * 在线命令词识别。
   */
-  @SuppressWarnings("StatementWithEmptyBody")
   public void commandRecognizebutton2(String text)
   {
     playAlarm(); // 播放声音，表示已经提交失败。
