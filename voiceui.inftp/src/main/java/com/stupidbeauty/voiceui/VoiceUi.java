@@ -1,10 +1,13 @@
 package com.stupidbeauty.voiceui;
 
 import android.util.Log;
-
+import android.media.MediaDataSource;
 import com.google.gson.Gson;
 import com.upokecenter.cbor.CBORObject;
-//import com.google.protobuf.InvalidProtocolBufferException;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import com.google.gson.Gson;
+import com.upokecenter.cbor.CBORObject;
 import com.google.gson.Gson;
 import com.stupidbeauty.hxlauncher.bean.VoicePackageMapJsonItem;
 import com.stupidbeauty.hxlauncher.bean.VoicePackageUrlMapData;
@@ -184,8 +187,11 @@ public class VoiceUi
 
       int soundLength=qrcHtmlFile.getLength();
       int soundStartOffset=qrcHtmlFile.getStartOffset();
+      
+      MediaDataSource soundMediaSource=qrcHtmlFile.getMediaDataSource(); // 获取媒体数据源。
 
-      mediaPlayer.setDataSource(file.getFileDescriptor(), soundStartOffset, soundLength); // 设置数据源。
+//       mediaPlayer.setDataSource(file.getFileDescriptor(), soundStartOffset, soundLength); // 设置数据源。
+      mediaPlayer.setDataSource(soundMediaSource); // 设置数据源。
 //       mediaPlayer.setDataSource(vfsDatafileDescriptor, soundStartOffset, soundLength); // 设置数据源。
       
       file.close();

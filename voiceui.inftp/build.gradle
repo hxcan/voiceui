@@ -20,6 +20,10 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
     }
   }
+  
+  aaptOptions {
+    noCompress 'v'
+  }
 }
 
 dependencies
@@ -30,7 +34,7 @@ dependencies
   compile fileTree(dir: 'libs', include: ['*.jar'])
   testCompile 'junit:junit:4.12'
   compile 'com.mcxiaoke.volley:library:1.0.19'
-  implementation 'com.github.hxcan:victoriafresh.android:2022.4.33'
+  implementation 'com.github.hxcan:victoriafresh.android:2022.5.1'
   compile 'com.upokecenter:cbor:4.4.4'
   compile group: 'com.github.oxo42', name: 'stateless4j', version: '2.5.0'
   compile 'com.rabbitmq:amqp-client:3.6.3'
