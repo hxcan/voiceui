@@ -3,6 +3,10 @@
     {
       "packageName": "需要解锁",
       "voiceCommand": "NeedUnlock.4.29.1.35.aac.ogg"
+    },
+    {
+      "packageName": "文件下载完毕",
+      "voiceCommand": "File.download.finished.aac"
     }
   ]
 }
