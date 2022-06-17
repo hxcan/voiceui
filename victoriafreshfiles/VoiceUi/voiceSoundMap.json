@@ -7,6 +7,14 @@
     {
       "packageName": "文件下载完毕",
       "voiceCommand": "File.download.finished.aac"
+    },
+    {
+      "packageName": "服务器停止响应",
+      "voiceCommand": "Server.Stopped.Response.aac"
+    },
+    {
+      "packageName": "开始下载",
+      "voiceCommand": "start.download.aac"
     }
   ]
 }
