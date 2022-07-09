@@ -9,54 +9,22 @@ import java.io.File;
 import com.google.gson.Gson;
 import com.upokecenter.cbor.CBORObject;
 import com.google.gson.Gson;
-import com.stupidbeauty.hxlauncher.bean.VoicePackageMapJsonItem;
-import com.stupidbeauty.hxlauncher.bean.VoicePackageUrlMapData;
+import com.stupidbeauty.voiceui.bean.VoicePackageMapJsonItem;
+import com.stupidbeauty.voiceui.bean.VoicePackageUrlMapData;
 import android.media.MediaPlayer;
-// import android.os.AsyncTask;
-// import android.os.Build;
-// import android.os.Bundle;
 import android.content.res.AssetFileDescriptor;
-// import android.inputmethodservice.InputMethodService;
-// import android.inputmethodservice.Keyboard;
-// import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import java.io.IOException;
-// import java.util.ArrayList;
-// import java.util.GregorianCalendar;
 import java.util.HashMap;
-// import java.util.HashSet;
-// import com.iflytek.cloud.SpeechSynthesizer;
-// import com.iflytek.cloud.ErrorCode;
-// import com.iflytek.cloud.RecognizerListener;
-// import com.iflytek.cloud.RecognizerResult;
-// import com.iflytek.cloud.SpeechConstant;
-// import java.util.ArrayList;
-// import java.util.Arrays;
-// import java.util.Collection;
 import java.util.HashMap;
 import android.content.Context;
-// import android.os.AsyncTask;
-// import com.stupidbeauty.ftpserver.lib.FtpServer;
-// import java.net.BindException;
-// import android.util.Log;
-// import android.view.KeyEvent;
-// import android.view.View;
-// import android.view.Window;
-// import android.view.WindowManager;
-// import com.iflytek.cloud.SpeechRecognizer;
 import com.stupidbeauty.victoriafresh.VFile;
-// import com.iflytek.cloud.SpeechUtility;
-// import com.iflytek.cloud.SpeechConstant;
-// import com.iflytek.cloud.SpeechError;
-// import com.iflytek.cloud.SpeechUtility;
-// import com.stupidbeauty.voiceui.R;
 
 public class VoiceUi
 {
   private VoicePackageUrlMapData voicePackageUrlMapData; //!<语音识别结果与软件包下载地址之间的映射。
   private int recognizeCounter=0; //!<识别计数器．
   private ErrorListener errorListener=null; //!< Error listener.
-  private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
   private int port=1421; //!< Port.
   private boolean allowActiveMode=true; //!<  Whether to allow active mode.
   private static final String TAG="VoiceUi"; //!< 输出调试信息时使用的标记。
@@ -111,14 +79,8 @@ public class VoiceUi
       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
 
-//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
-//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
-
-
-//       mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
       VFile qrcHtmlFile=new VFile(context, victoriaFreshIndexFileId, victoriaFreshDataFileId, fullQrcFileName); //qrc网页文件。
 
-//       byte[] fileContent= qrcHtmlFile.getFileContent(); //将照片文件内容全部读取。
       String fileContent=qrcHtmlFile.getFileTextContent(); //获取文件的完整内容。
       
       Log.d(TAG, "loadVoiceUiTextSoundFileMap, file content: " + fileContent); // Debug.
@@ -127,21 +89,15 @@ public class VoiceUi
 
       voicePackageUrlMapData = gson.fromJson(fileContent, VoicePackageUrlMapData.class); //解析。
 
-// 		voicePackageUrlMap=new HashMap<>(); //创建映射。
-// 		packageNameUrlMap=new HashMap<>(); //创建映射
-// 		packageNameVersionNameMap=new HashMap<>(); // 创建映射。陈欣
-		packageNameApplicationNameMap=new HashMap<>(); //创建映射
+      packageNameApplicationNameMap=new HashMap<>(); //创建映射
 
-		if (voicePackageUrlMapData!=null) //解析得到的映射数据不为空。
-		{
-          for(VoicePackageMapJsonItem currentItem: voicePackageUrlMapData.getVoicePackageMapJsonItemList()) //一个个地添加。
-          {
-//             voicePackageUrlMap.put(currentItem.voiceCommand, currentItem.packageUrl); //加入映射。
-//             packageNameUrlMap.put(currentItem.getPackageName(), currentItem.packageUrl); //加入映射。
-//             packageNameVersionNameMap.put(currentItem.getPackageName(), currentItem.versionName); // 加入映射。
-            packageNameApplicationNameMap.put( currentItem.getPackageName(),currentItem.voiceCommand); //加入映射，包名与应用程序名的映射
-          } //for(VoicePackageMapJsonItem currentItem: voicePackageUrlMapData.getVoicePackageMapJsonItemList()) //一个个地添加。
-		} //if (voicePackageUrlMapData!=null) //解析得到的映射数据不为空。
+      if (voicePackageUrlMapData!=null) //解析得到的映射数据不为空。
+      {
+        for(VoicePackageMapJsonItem currentItem: voicePackageUrlMapData.getVoicePackageMapJsonItemList()) //一个个地添加。
+        {
+          packageNameApplicationNameMap.put( currentItem.getPackageName(),currentItem.voiceCommand); //加入映射，包名与应用程序名的映射
+        } //for(VoicePackageMapJsonItem currentItem: voicePackageUrlMapData.getVoicePackageMapJsonItemList()) //一个个地添加。
+      } //if (voicePackageUrlMapData!=null) //解析得到的映射数据不为空。
     }
     catch (Exception ioe) 
     {

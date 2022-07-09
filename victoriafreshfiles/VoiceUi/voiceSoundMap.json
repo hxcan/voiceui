@@ -15,6 +15,10 @@
     {
       "packageName": "开始下载",
       "voiceCommand": "start.download.aac"
+    },
+    {
+      "packageName": "准备安装",
+      "voiceCommand": "prepare.install.27788.aac"
     }
   ]
 }
