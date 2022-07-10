@@ -195,7 +195,10 @@ public class VoiceUi
 
     if (ringerMode==AudioManager.RINGER_MODE_NORMAL) //有声音模式。
     {
-      mediaPlayer.start();
+      if (mediaPlayer!=null) // Media player exists.
+      {
+        mediaPlayer.start();
+      } // if (mediaPlayer!=null) // Media player exists.
     } //if (ringerMode!=AudioManager.RINGER_MODE_NORMAL) //静音模式。
   } //protected void playAlarm()
 }
