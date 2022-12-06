@@ -13,8 +13,16 @@
       "voiceCommand": "Server.Stopped.Response.aac"
     },
     {
+      "packageName": "IP变化",
+      "voiceCommand": "ip.change.aac"
+    },
+    {
       "packageName": "开始下载",
       "voiceCommand": "start.download.aac"
+    },
+    {
+      "packageName": "完蛋了",
+      "voiceCommand": "Game.over.aac"
     },
     {
       "packageName": "准备安装",
