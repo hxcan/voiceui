@@ -21,6 +21,10 @@
       "voiceCommand": "start.download.aac"
     },
     {
+      "packageName": "下载失败",
+      "voiceCommand": "download.failed.1.aac"
+    },
+    {
       "packageName": "完蛋了",
       "voiceCommand": "Game.over.aac"
     },
