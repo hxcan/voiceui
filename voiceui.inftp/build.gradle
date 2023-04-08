@@ -28,13 +28,13 @@ android
  
 dependencies
 {
-  compile 'com.koushikdutta.async:androidasync:2.1.7'
+  implementation 'com.koushikdutta.async:androidasync:2.1.7'
   implementation 'commons-io:commons-io:2.6'
 //   compile fileTree(dir: 'libs', include: ['*.jar'])
 //   testCompile 'junit:junit:4.12'
-  compile 'com.mcxiaoke.volley:library:1.0.19'
+  implementation 'com.mcxiaoke.volley:library:1.0.19'
   implementation 'com.github.hxcan:victoriafresh.android:2022.5.3'
-  compile 'com.upokecenter:cbor:4.4.4'
+  implementation 'com.upokecenter:cbor:4.4.4'
 //   compile group: 'com.github.oxo42', name: 'stateless4j', version: '2.5.0'
 //   compile 'com.rabbitmq:amqp-client:3.6.3'
 //   compile group: 'io.gsonfire', name: 'gson-fire', version: '1.3.1'

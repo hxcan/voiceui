@@ -83,7 +83,7 @@ public class VoiceUi
 
       String fileContent=qrcHtmlFile.getFileTextContent(); //获取文件的完整内容。
       
-      Log.d(TAG, "loadVoiceUiTextSoundFileMap, file content: " + fileContent); // Debug.
+      // Log.d(TAG, "loadVoiceUiTextSoundFileMap, file content: " + fileContent); // Debug.
 
       Gson gson=new Gson();
 
