@@ -1,5 +1,10 @@
 package com.stupidbeauty.voiceui;
 
+import com.stupidbeauty.codeposition.CodePosition;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import android.media.MediaScannerConnection;
 import android.util.Log;
 import android.media.MediaDataSource;
 import com.google.gson.Gson;
@@ -109,56 +114,47 @@ public class VoiceUi
 
   private MediaPlayer buildMediaPlayer(Context activity, String text)
   {
+    Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
     voiceUiTextSoundFileMap = loadVoiceUiTextSoundFileMap(); // 载入映射文件。
   
     MediaPlayer mediaPlayer = new MediaPlayer();
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
 
-//     AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.victoriafreshdata_voiceui); //提示音。
-
-//     context.getPackageName()
-
-//     int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
     int vfsDatafileDescriptor = context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
 
-//     AssetFileDescriptor file = activity.getResources().openRawResourceFd(vfsDatafileDescriptor); //提示音。
-//     AssetFileDescriptor file = activity.getResources().openRawResourceFd(com.stupidbeauty.voiceui.R.raw.victoriafreshdata_voiceui); //提示音。
-
-    try 
+    try // Prepare the media player
     {
-//       String qrcFileName="voicePackageNameMap.ost"; //文件名。
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
       String qrcFileName=voiceUiTextSoundFileMap.get(text); // 声音文件名。
 
       String fullQrcFileName=":/VoiceUi/"+qrcFileName; //构造完整的qrc文件名。
       
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", context.getPackageName()); //获取数据文件编号。
       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
 
-//       int victoriaFreshDataFileId=context.getResources().getIdentifier("victoriafreshdata_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取数据文件编号。
-//       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", Constants.Literal.PACKAGE_NAME); //获取索引文件编号。
-
-
-//       mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
       VFile qrcHtmlFile=new VFile(context, victoriaFreshIndexFileId, victoriaFreshDataFileId, fullQrcFileName); //qrc网页文件。
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
 
       int soundLength=qrcHtmlFile.getLength();
       int soundStartOffset=qrcHtmlFile.getStartOffset();
       
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
       MediaDataSource soundMediaSource=qrcHtmlFile.getMediaDataSource(); // 获取媒体数据源。
 
-//       mediaPlayer.setDataSource(file.getFileDescriptor(), soundStartOffset, soundLength); // 设置数据源。
       mediaPlayer.setDataSource(soundMediaSource); // 设置数据源。
-//       mediaPlayer.setDataSource(vfsDatafileDescriptor, soundStartOffset, soundLength); // 设置数据源。
       
-//       file.close();
-//       mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
       mediaPlayer.prepare();
-    }
+    } // try // Prepare the media player
     catch (IOException ioe) 
     {
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
       ioe.printStackTrace(); // 报告错误。
       mediaPlayer = null;
     }
+    Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
     return mediaPlayer;
   }
 

@@ -30,7 +30,7 @@ dependencies
 {
   implementation 'com.koushikdutta.async:androidasync:2.1.7'
   implementation 'commons-io:commons-io:2.6'
-//   compile fileTree(dir: 'libs', include: ['*.jar'])
+  implementation 'com.github.hxcan:CodePosition:2023.3.29'
 //   testCompile 'junit:junit:4.12'
   implementation 'com.mcxiaoke.volley:library:1.0.19'
   implementation 'com.github.hxcan:victoriafresh.android:2022.5.3'
