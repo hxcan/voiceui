@@ -135,10 +135,12 @@ public class VoiceUi
       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
 
       VFile qrcHtmlFile=new VFile(context, victoriaFreshIndexFileId, victoriaFreshDataFileId, fullQrcFileName); //qrc网页文件。
-      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text + ", virtual file: " + qrcHtmlFile + ", exists?: " + qrcHtmlFile.exists()); // Debug.
 
       int soundLength=qrcHtmlFile.getLength();
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text + ", virtual file length: " + soundLength); // Debug.
       int soundStartOffset=qrcHtmlFile.getStartOffset();
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text + ", virtual file start offset: " + soundStartOffset); // Debug.
       
       Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
       MediaDataSource soundMediaSource=qrcHtmlFile.getMediaDataSource(); // 获取媒体数据源。
@@ -146,7 +148,7 @@ public class VoiceUi
       mediaPlayer.setDataSource(soundMediaSource); // 设置数据源。
       
       Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text); // Debug.
-      mediaPlayer.prepare();
+      mediaPlayer.prepare(); // Prepare the media play.
     } // try // Prepare the media player
     catch (IOException ioe) 
     {
