@@ -135,6 +135,19 @@ public class VoiceUi
       int victoriaFreshIndexFileId=context.getResources().getIdentifier("victoriafresh_voiceui", "raw", context.getPackageName()); //获取索引文件编号。
 
       VFile qrcHtmlFile=new VFile(context, victoriaFreshIndexFileId, victoriaFreshDataFileId, fullQrcFileName); //qrc网页文件。
+      
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text + ", virtual file: " + qrcHtmlFile + ", exists?: " + qrcHtmlFile.exists()); // Debug.
+      if (qrcHtmlFile.exists()) // The file exists
+      {
+      } // if (qrcHtmlFile.exists()) // The file exists
+      else // not exist
+      {
+        // short.ogg
+        qrcFileName= "short.ogg"; // The sound file name. short.ogg.
+
+        fullQrcFileName=":/VoiceUi/"+qrcFileName; //构造完整的qrc文件名。
+        qrcHtmlFile=new VFile(context, victoriaFreshIndexFileId, victoriaFreshDataFileId, fullQrcFileName); // The final virtual file.
+      } // else // not exist
       Log.d(TAG, CodePosition.newInstance().toString()+  ", text: " + text + ", virtual file: " + qrcHtmlFile + ", exists?: " + qrcHtmlFile.exists()); // Debug.
 
       int soundLength=qrcHtmlFile.getLength();
