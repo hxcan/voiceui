@@ -8,11 +8,11 @@ import android.media.MediaScannerConnection;
 import android.util.Log;
 import android.media.MediaDataSource;
 import com.google.gson.Gson;
-import com.upokecenter.cbor.CBORObject;
+// import com.upokecenter.cbor.CBORObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import com.google.gson.Gson;
-import com.upokecenter.cbor.CBORObject;
+// import com.upokecenter.cbor.CBORObject;
 import com.google.gson.Gson;
 import com.stupidbeauty.voiceui.bean.VoicePackageMapJsonItem;
 import com.stupidbeauty.voiceui.bean.VoicePackageUrlMapData;
@@ -28,7 +28,7 @@ import com.stupidbeauty.victoriafresh.VFile;
 public class VoiceUi
 {
   private VoicePackageUrlMapData voicePackageUrlMapData; //!<语音识别结果与软件包下载地址之间的映射。
-  private int recognizeCounter=0; //!<识别计数器．
+
   private ErrorListener errorListener=null; //!< Error listener.
   private int port=1421; //!< Port.
   private boolean allowActiveMode=true; //!<  Whether to allow active mode.
